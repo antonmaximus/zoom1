@@ -67,7 +67,7 @@ img {width: 100%;}
 var myElement = document.getElementById('wrapper');
 console.log(myElement);
 
-var hammertime = new Hammer(myElement, myOptions);
+var hammertime = new Hammer(myElement);
 hammertime.on('pan', function(ev) {
     console.log(ev);
 });
