@@ -68,8 +68,9 @@ var myElement = document.getElementById('wrapper');
 console.log(myElement);
 
 var hammertime = new Hammer(myElement);
-hammertime.on('pan', function(ev) {
+hammertime.on('tap', function(ev) {
     console.log(ev);
+    $('#textbox').html("Pinch In");
 });
 
 
