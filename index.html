@@ -59,57 +59,29 @@ body, html {
 
 <script type="text/javascript">
 
+var app = window.parent.app;
 
-var dom = document.body,
-    _width = parseInt($('#square').css('width')),
-    vel = 5.0,
-    min = _width,
-    max = 300,
-    scale;
+console.log(app);
 
-dom.addEventListener("gesturechange", gestureChange, false);
-dom.addEventListener("gestureend", gestureEnd, false);
-
-function gestureChange(e) {
-
-    e.preventDefault();
-
-    scale = e.scale;
-    var tempWidth = _width * scale;
-
-    if (tempWidth > max) tempWidth = max;
-    if (tempWidth < min) tempWidth = min;
-
-    $('#square').css({
-        'width': tempWidth + 'px',
-        'height': tempWidth + 'px'
-    });
-}
-
-function gestureEnd(e) {
-
-    e.preventDefault();
-    _width = parseInt($('#square').css('width'));
-}
-
-
-
-// var image=document.getElementById('imageId');
-
-// image.addEventListener('gesturechange',function(e){
-
-//     if(e.scale>1){
+if (app.environment.mobile) {
+    // implement zoom icons and functionality for mobile
+    app.util.embedFile(app.util.frontend_path('js/plugins', 'hammer.min.js'), function () {
         
-//         image.style.width = '200%';
-//     }
+        Hammer(container, {
+            drag_block_vertical: true,
+            drag_block_horizontal: true
+        })
+        .on("swipeleft", rpLib.scope(self.swipeLeft, self))
+        .on("swiperight", rpLib.scope(self.swipeRight, self));
+    });
 
-//     else if(e.scale<1){
-//         //zoom out 
-//         //decrease the size of image according to the e.scale
-//         image.style.width = '50%';
-//     }
-// });
+} else {
+    
+}
+
 </script>
+
+
 
 
 </body>
