@@ -41,7 +41,7 @@ body {background-color: cornflowerblue;
 </div>
 
 <div id='blue'>
-<p id='textbox'>hellow 33 </p>
+<p id='textbox'>hellow 11 </p>
 </div>
 
 
@@ -74,10 +74,10 @@ hammertime.get('rotate').set({ enable: false });
 
 hammertime.on('pan', function(e) {
     // var imgWidth = parseInt(getComputedStyle(myElement).width);
-    var deltaY = e.deltaY;
-    jQuery('#textbox').html(deltaY);
+    var deltaY = e.deltaX;
+    jQuery('#textbox').html(deltaX);
 
-    // jQuery('body').scrollLeft -= deltaY;
+    jQuery('body').scrollLeft -= deltaX;
     // hammertime.style.zoom('300%');
 
     // e.target.style.webkitTransform =
