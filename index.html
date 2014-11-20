@@ -41,7 +41,7 @@ body {background-color: cornflowerblue;
 </div>
 
 <div id='blue'>
-<p id='textbox'>hellow 11 </p>
+<p id='textbox'>hellow 22 </p>
 </div>
 
 
@@ -74,7 +74,7 @@ hammertime.get('rotate').set({ enable: false });
 
 hammertime.on('pan', function(e) {
     // var imgWidth = parseInt(getComputedStyle(myElement).width);
-    var deltaY = e.deltaX;
+    var deltaX = e.deltaX;
     jQuery('#textbox').html(deltaX);
 
     jQuery('body').scrollLeft -= deltaX;
