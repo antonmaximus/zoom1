@@ -49,7 +49,7 @@ img {width: 100%;}
 <img  id='wrapper' src="http://2.bp.blogspot.com/-VQJMK8PRnI0/UjYaglEkV5I/AAAAAAAAACg/N2MkW6iorr0/s1600/30192_1600x1200-4-cute-cats.jpg" />
 </div>
 
-<p>hellow 5 </p>
+<p id='textbox'>hellow 5 </p>
 
 
 
@@ -74,6 +74,8 @@ var hammertime = new Hammer(myElement);
 // hammertime.get('pinch').set({ enable: true });
 
 console.log('hammer 2 ');
+
+
 hammertime.on('pinch', function(ev) {
     console.log('pinch');
     console.log(ev);
@@ -82,6 +84,17 @@ hammertime.on('pinch', function(ev) {
 hammertime.on('pinchin', function(ev) {
     console.log('pinchin');
 });
+
+
+
+    // Pinc gesture
+
+var hammertime = Hammer(myElement).on("pinchin", function(event) {
+
+    $('#textbox').html("Pinch In");
+
+}
+
 
 
 // console.log('woo ohoo');
