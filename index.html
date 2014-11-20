@@ -106,8 +106,9 @@ hammertime.on('pinchout', resize);
 function resize (e) {
     console.log(e);
     // jQuery('#textbox').html(e.deltaY);
-    hammertime.style.width = parseIint(hammertime.style.width);
-    jQuery('#textbox').html(parseIint(hammertime.style.width));
+    // hammertime.style.width = parseIint(hammertime.style.width);
+    var xs = parseIint(hammertime.style.width);
+    jQuery('#textbox').html(xs + 'px');
 
 
 
