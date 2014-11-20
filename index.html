@@ -41,7 +41,7 @@ body {background-color: cornflowerblue;
 </div>
 
 <div id='blue'>
-<p id='textbox'>hellow 14 </p>
+<p id='textbox'>hellow 22 </p>
 </div>
 
 
@@ -73,13 +73,13 @@ hammertime.get('rotate').set({ enable: false });
 // jQuery('#textbox').html(minWidth);
 
 hammertime.on('swipe', function(e) {
-    var imgWidth = parseInt(getComputedStyle(myElement).width);
+    // var imgWidth = parseInt(getComputedStyle(myElement).width);
     var deltaY = e.deltaY;
+    jQuery('#textbox').html(deltaY);
 
-    jQuery('body').scrollLeft -= deltaY;
+    // jQuery('body').scrollLeft -= deltaY;
     // hammertime.style.zoom('300%');
 
-    jQuery('#textbox').html(deltaY);
     // e.target.style.webkitTransform =
     //     'scale(' + (e.scale  + 0.5) + ')';
 });
