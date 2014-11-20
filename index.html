@@ -70,10 +70,10 @@ var myOptions = {
             drag_block_vertical: true,
             drag_block_horizontal: true
         };
-var hammertime = new Hammer(myElement, myOptions);
+var hammertime = new Hammer(myElement);
 hammertime.get('pinch').set({ enable: true });
 
-console.log('hammer one1 ');
+console.log('hammer 2 ');
 hammertime.on('pinch', function(ev) {
     console.log(ev);
 });
