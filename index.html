@@ -46,7 +46,7 @@ img {width: 100%;}
 <body>
 
 <div>
-<img  id='imageId' src="http://2.bp.blogspot.com/-VQJMK8PRnI0/UjYaglEkV5I/AAAAAAAAACg/N2MkW6iorr0/s1600/30192_1600x1200-4-cute-cats.jpg" />
+<img  id='wrapper' src="http://2.bp.blogspot.com/-VQJMK8PRnI0/UjYaglEkV5I/AAAAAAAAACg/N2MkW6iorr0/s1600/30192_1600x1200-4-cute-cats.jpg" />
 </div>
 
 <p>hellow 5 </p>
@@ -71,9 +71,13 @@ var myOptions = {
             drag_block_horizontal: true
         };
 var hammertime = new Hammer(myElement, myOptions);
-hammertime.on('pan', function(ev) {
+hammertime.get('pinch').set({ enable: true });
+
+hammertime.on('pinch', function(ev) {
     console.log(ev);
 });
+
+
 
 
 // console.log('woo ohoo');
