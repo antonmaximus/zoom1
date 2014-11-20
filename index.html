@@ -39,9 +39,21 @@ body, html {
 
 */
 
-img {width: 100%;}
-
+img {
+    width: 100%;
+}
+img:hover {
+     width: 200%;
+}
 p { font-size: 60px;}
+
+
+#blue {
+    border: 1px solid blue;
+}
+#blue:hover {
+        zoom: 2;
+}
 </style>
 </head>
 
@@ -51,8 +63,9 @@ p { font-size: 60px;}
 <img  id='wrapper' src="http://2.bp.blogspot.com/-VQJMK8PRnI0/UjYaglEkV5I/AAAAAAAAACg/N2MkW6iorr0/s1600/30192_1600x1200-4-cute-cats.jpg" />
 </div>
 
+<div id='blue'>
 <p id='textbox'>hellow 5 </p>
-
+</div>
 
 
 <!-- <div id="wrapper">
@@ -79,12 +92,17 @@ hammertime.get('pinch').set({ enable: true });
 hammertime.on('tap', function(ev) {
     console.log(ev);
     jQuery('#textbox').html("tapped");
+    // hammertime.style.zoom('300%');
 });
 
 
-hammertime.on('pinchin', function(ev) {
-    console.log(ev);
-    jQuery('#textbox').html("pinchin");
+hammertime.on('pinchin', function(e) {
+    console.log(e);
+    jQuery('#textbox').html(e);
+
+    e.preventDefault();
+    // e.target.style.webkitTransform =
+    //     'scale(' + e.scale  + startScale  + ')
 });
 
 
