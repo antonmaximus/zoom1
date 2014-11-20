@@ -64,16 +64,9 @@ p { font-size: 60px;}
 </div>
 
 <div id='blue'>
-<p id='textbox'>hellow 5 </p>
+<p id='textbox'>hellow6 </p>
 </div>
 
-
-<!-- <div id="wrapper">
-    <div class="wrap">
-        <div id="square"></div>
-    </div>
-</div>
- -->
 
 <script src="./hammer.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -94,9 +87,9 @@ hammertime.on('tap', function(e) {
     jQuery('#textbox').html("tapped");
     // hammertime.style.zoom('300%');
 
-    console.log(e.target);
-    e.target.style.webkitTransform =
-        'scale(' + (e.scale  + 0.5) + ')';
+    // console.log(e.target);
+    // e.target.style.webkitTransform =
+    //     'scale(' + (e.scale  + 0.5) + ')';
 });
 
 
@@ -105,10 +98,11 @@ hammertime.on('pinchout', resize);
 
 function resize (e) {
     console.log(e);
+    jQuery('#textbox').html('sdfdsfsdfd');
     // jQuery('#textbox').html(e.deltaY);
     // hammertime.style.width = parseIint(hammertime.style.width);
-    var xs = parseIint(hammertime.style.width);
-    jQuery('#textbox').html(xs + 'px');
+    // var xs = parseIint(hammertime.style.width);
+    // jQuery('#textbox').html(xs + 'px');
 
 
 
