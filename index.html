@@ -82,6 +82,8 @@ var hammertime = new Hammer(myElement);
 hammertime.get('pinch').set({ enable: true });
 
 
+jQuery('#textbox').html(jQuery(window).width());
+
 hammertime.on('tap', function(e) {
     var imgWidth = parseInt(getComputedStyle(myElement).width);
     console.log(imgWidth);
@@ -102,7 +104,7 @@ function resize (e) {
     var deltaY = e.deltaY;
     var sum = imgWidth + deltaY;
     jQuery('#textbox').html(sum);
-    hammertime.style.width = sum;
+    hammertime.style.width = sum + 'px';
 
 
 
