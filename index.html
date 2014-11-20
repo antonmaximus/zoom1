@@ -96,16 +96,18 @@ hammertime.on('tap', function(ev) {
 });
 
 
-hammertime.on('pinchin', function(e) {
+hammertime.on('pinchin', resize);
+hammertime.on('pinchout', resize);
+
+function resize (e) {
+    function(e) {
     console.log(e);
     jQuery('#textbox').html(e);
 
-    e.preventDefault();
+    // e.preventDefault();
     // e.target.style.webkitTransform =
     //     'scale(' + e.scale  + startScale  + ')
-});
-
-
+};
 
 // var myElement = document.getElementById('wrapper');
 // var myOptions = {
