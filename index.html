@@ -83,8 +83,9 @@ hammertime.get('pinch').set({ enable: true });
 
 
 hammertime.on('tap', function(e) {
-    console.log(e);
-    jQuery('#textbox').html("tapped");
+    var imgWidth = parseInt(getComputedStyle(myElement).width);
+    console.log(imgWidth);
+    jQuery('#textbox').html(myElement.style.width);
     // hammertime.style.zoom('300%');
 
     // console.log(e.target);
@@ -97,12 +98,11 @@ hammertime.on('pinchin', resize);
 hammertime.on('pinchout', resize);
 
 function resize (e) {
-    console.log(e);
-    jQuery('#textbox').html('sdfdsfsdfd');
-    // jQuery('#textbox').html(e.deltaY);
-    // hammertime.style.width = parseIint(hammertime.style.width);
-    // var xs = parseIint(hammertime.style.width);
-    // jQuery('#textbox').html(xs + 'px');
+    var imgWidth = parseInt(getComputedStyle(myElement).width);
+    var deltaY = e.deltaY;
+    var sum = imgWidth + deltaY;
+    jQuery('#textbox').html(sum);
+    hammertime.style.width = sum;
 
 
 
