@@ -17,10 +17,33 @@ img {
 <body>
 
 <div>
-<img  src="http://2.bp.blogspot.com/-VQJMK8PRnI0/UjYaglEkV5I/AAAAAAAAACg/N2MkW6iorr0/s1600/30192_1600x1200-4-cute-cats.jpg" />
+<img  id='imageId' src="http://2.bp.blogspot.com/-VQJMK8PRnI0/UjYaglEkV5I/AAAAAAAAACg/N2MkW6iorr0/s1600/30192_1600x1200-4-cute-cats.jpg" />
 </div>
 
 <p>hellow 4 </p>
+
+
+
+<script type="text/javascript">
+
+var image=document.getElementById('imageId');
+
+image.addEventListener('gesturechange',function(e){
+
+    if(e.scale>1){
+        
+        image.style.width = 200%;
+    }
+
+    else if(e.scale<1){
+        //zoom out 
+        //decrease the size of image according to the e.scale
+        image.style.width = 50%;
+    }
+});
+</script>
+
+
 </body>
 
 </html>
