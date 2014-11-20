@@ -73,6 +73,7 @@ var myOptions = {
 var hammertime = new Hammer(myElement, myOptions);
 hammertime.get('pinch').set({ enable: true });
 
+console.log('hammer one1 ');
 hammertime.on('pinch', function(ev) {
     console.log(ev);
 });
