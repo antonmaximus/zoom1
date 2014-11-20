@@ -38,6 +38,8 @@ body, html {
 }
 
 */
+
+img {width: 100%;}
 </style>
 </head>
 
@@ -67,7 +69,7 @@ var myElement = document.getElementById('wrapper');
 var myOptions = {
             drag_block_vertical: true,
             drag_block_horizontal: true
-        }
+        };
 var hammertime = new Hammer(myElement, myOptions);
 hammertime.on('pan', function(ev) {
     console.log(ev);
