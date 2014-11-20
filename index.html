@@ -71,9 +71,18 @@ console.log(myElement);
 
 var hammertime = new Hammer(myElement);
 
+hammertime.get('pinch').set({ enable: true });
+
+
 hammertime.on('tap', function(ev) {
     console.log(ev);
-    jQuery('#textbox').html("Pinch In");
+    jQuery('#textbox').html("tapped");
+});
+
+
+hammertime.on('pinchin', function(ev) {
+    console.log(ev);
+    jQuery('#textbox').html("pinchin");
 });
 
 
