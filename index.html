@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="initial-scale=1">
 
 <title>MEOW</title>
 <style>
@@ -35,7 +35,7 @@ body {background-color: cornflowerblue;
 </div>
 
 <div id='blue'>
-<p id='textbox'>hellow6 </p>
+<p id='textbox'>hellow 8</p>
 </div>
 
 
@@ -56,7 +56,7 @@ var hammertime = new Hammer(myElement);
 hammertime.get('pinch').set({ enable: true });
 
 
-jQuery('#textbox').html(minWidth);
+// jQuery('#textbox').html(minWidth);
 
 hammertime.on('tap', function(e) {
     var imgWidth = parseInt(getComputedStyle(myElement).width);
