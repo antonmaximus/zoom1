@@ -75,10 +75,13 @@ hammertime.get('pinch').set({ enable: true });
 
 console.log('hammer 2 ');
 hammertime.on('pinch', function(ev) {
+    console.log('pinch');
     console.log(ev);
 });
 
-
+hammertime.on('pinchin', function(ev) {
+    console.log('pinchin');
+});
 
 
 // console.log('woo ohoo');
