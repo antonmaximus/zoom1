@@ -73,10 +73,10 @@ hammertime.on('pinchout', resize);
 function resize (e) {
     var imgWidth = parseInt(getComputedStyle(myElement).width);
     var deltaY = e.deltaY;
-    var sum = imgWidth + deltaY;
-    jQuery('#textbox').html(sum);
-    myElement.style.width = sum + 'px';
-    thisBody.style.width = sum + 'px';
+    var total = imgWidth - deltaY;
+    jQuery('#textbox').html(total);
+    myElement.style.width = total + 'px';
+    thisBody.style.width = total + 'px';
 
 
 
