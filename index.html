@@ -35,7 +35,7 @@ body {background-color: cornflowerblue;
 </div>
 
 <div id='blue'>
-<p id='textbox'>hellow 9</p>
+<p id='textbox'>hellow 10</p>
 </div>
 
 
@@ -56,6 +56,9 @@ var hammertime = new Hammer(myElement);
 hammertime.get('pinch').set({ enable: true });
 
 hammertime.get('tap').set({ enable: false });
+hammertime.get('press').set({ enable: false });
+hammertime.get('rotate').set({ enable: false });
+hammertime.get('swipe').set({ enable: false });
 
 // jQuery('#textbox').html(minWidth);
 
