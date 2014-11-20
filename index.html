@@ -41,7 +41,7 @@ body {background-color: cornflowerblue;
 </div>
 
 <div id='blue'>
-<p id='textbox'>hellow 12 </p>
+<p id='textbox'>hellow 13 </p>
 </div>
 
 
@@ -58,7 +58,11 @@ var minWidth = jQuery(window).width();
 console.log(myElement);
 
 
-// Hammer.defaults.behavior.touchAction = 'pan-x';
+Hammer.defaults.behavior.touchAction = 'pan-y';
+
+// ...your hammer code...etc...
+var mc = new Hammer(document.body);
+
 
 var hammertime = new Hammer(myElement);
 
