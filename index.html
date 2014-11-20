@@ -68,15 +68,15 @@ hammertime.get('tap').set({ enable: false });
 hammertime.get('pan').set({ enable: false });
 hammertime.get('press').set({ enable: false });
 hammertime.get('rotate').set({ enable: false });
-hammertime.get('swipe').set({ enable: false });
+// hammertime.get('swipe').set({ enable: false });
 
 // jQuery('#textbox').html(minWidth);
 
-hammertime.on('tap', function(e) {
+hammertime.on('swipe', function(e) {
     var imgWidth = parseInt(getComputedStyle(myElement).width);
-    console.log(imgWidth);
-    console.log(e);
-    jQuery('#textbox').html(myElement.style.width);
+    var deltaY = e.deltaY;
+
+    jQuery('body').scrollLeft -= deltaY;
     // hammertime.style.zoom('300%');
 
     // console.log(e.target);
@@ -85,8 +85,8 @@ hammertime.on('tap', function(e) {
 });
 
 
-hammertime.on('pinchin', resize);
-hammertime.on('pinchout', resize);
+hammertime.on('pinch', resize);
+// hammertime.on('pinchout', resize);
 
 function resize (e) {
     var imgWidth = parseInt(getComputedStyle(myElement).width);
