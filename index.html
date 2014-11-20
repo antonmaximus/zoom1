@@ -64,36 +64,45 @@ img {width: 100%;}
 
 <script type="text/javascript">
 
-
 var myElement = document.getElementById('wrapper');
-var myOptions = {
-            drag_block_vertical: true,
-            drag_block_horizontal: true
-        };
-var hammertime = new Hammer(myElement);
-// hammertime.get('pinch').set({ enable: true });
+console.log(myElement);
 
-console.log('hammer 2 ');
-
-
-hammertime.on('pinch', function(ev) {
-    console.log('pinch');
+var hammertime = new Hammer(myElement, myOptions);
+hammertime.on('pan', function(ev) {
     console.log(ev);
 });
 
-hammertime.on('pinchin', function(ev) {
-    console.log('pinchin');
-});
+
+
+// var myElement = document.getElementById('wrapper');
+// var myOptions = {
+//             drag_block_vertical: true,
+//             drag_block_horizontal: true
+//         };
+// var hammertime = new Hammer(myElement);
+// // hammertime.get('pinch').set({ enable: true });
+
+// console.log('hammer 2 ');
+
+
+// hammertime.on('pinch', function(ev) {
+//     console.log('pinch');
+//     console.log(ev);
+// });
+
+// hammertime.on('pinchin', function(ev) {
+//     console.log('pinchin');
+// });
 
 
 
-    // Pinc gesture
+//     // Pinc gesture
 
-var hammertime = Hammer(myElement).on("pinchin", function(event) {
+// var hammertime = Hammer(myElement).on("pinchin", function(event) {
 
-    $('#textbox').html("Pinch In");
+//     $('#textbox').html("Pinch In");
 
-});
+// });
 
 
 
