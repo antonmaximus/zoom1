@@ -42,6 +42,7 @@ p { font-size: 60px;}
 <script type="text/javascript">
 
 var myElement = document.getElementById('wrapper');
+var thisBody = document.body;
 console.log(myElement);
 
 var hammertime = new Hammer(myElement);
@@ -54,6 +55,7 @@ jQuery('#textbox').html(jQuery(window).width());
 hammertime.on('tap', function(e) {
     var imgWidth = parseInt(getComputedStyle(myElement).width);
     console.log(imgWidth);
+    console.log(e);
     jQuery('#textbox').html(myElement.style.width);
     // hammertime.style.zoom('300%');
 
@@ -72,6 +74,7 @@ function resize (e) {
     var sum = imgWidth + deltaY;
     jQuery('#textbox').html(sum);
     myElement.style.width = sum + 'px';
+    thisBody.style.width = sum + 'px';
 
 
 
