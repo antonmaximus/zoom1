@@ -20,7 +20,7 @@ body, div, img {
 }
 
 body {
-    background-color: pink;
+    background-color: blue;
     border: 2px solid red;
     }
 
@@ -137,28 +137,28 @@ function panImage (e) {
     var minLeft = 0,
         maxLeft = frameWidth - imgWidth,
         posLeft = parseInt(getComputedStyle(targetImg).left),
-        newLeft  =  posLeft + e.deltaX;
+        newLeft  =  posLeft + (e.deltaX * rate);
 
     if(imgWidth < frameWidth || newLeft > minLeft) {
         newLeft = minLeft ;
     } else if (newLeft < maxLeft) {
         newLeft = maxLeft;
     }
-    targetImg.style.left = (newLeft * rate) + 'px';
+    targetImg.style.left = newLeft + 'px';
 
 
     // Configure Vertical Pan
     var minTop = 0,
         maxTop = frameHeight - imgHeight,
         posTop = parseInt(getComputedStyle(targetImg).top),
-        newTop  =  posTop + e.deltaY;
+        newTop  =  posTop + (e.deltaY * rate);
 
     if(imgHeight < frameHeight || newTop > minTop) {
         newTop = minTop ;
     } else if (newTop < maxTop) {
         newTop = maxTop;
     }
-    targetImg.style.top = (newTop * rate) + 'px';
+    targetImg.style.top = newTop + 'px';
 
 }
 
@@ -176,7 +176,7 @@ function resize (e, direction) {
 
 
     var delta = direction * Math.sqrt( (e.deltaY * e.deltaY) + (e.deltaX * e.deltaX) ); // Calculus formula
-    var newWidth = imgWidth + delta;
+    var newWidth = imgWidth + (delta * rate);  // Slow the change down
 
     var minZoom = viewportWidth,
         maxZoom = viewportWidth * 2.5;
@@ -187,8 +187,8 @@ function resize (e, direction) {
         newWidth = maxZoom;
     }
 
-    wrapper.style.width = (newWidth * rate) + 'px';
-    thisBody.style.width = (newWidth * rate) + 'px';
+    wrapper.style.width = newWidth  + 'px';
+    thisBody.style.width = newWidth + 'px';
 
 
     /* Now reposition top and left according to initial ratio. */
