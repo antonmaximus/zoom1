@@ -47,7 +47,7 @@ body {
 </div>
 
 <div id='blue'>
-<p id='viewportP'>11 qq </p>
+<p id='viewportP'>111 qq </p>
 <p id='widthImg'>hellow aa </p>
 <p id='lefpos'>hellow aa </p>
 </div>
@@ -107,23 +107,23 @@ function panImage (e) {
 
 
 
-    // // Configure Y pan
-    // var imgHeight = parseInt(getComputedStyle(myElement).height),
-    //     minY = 0,
-    //     maxY = viewportHeight - imgHeight,
-    //     posTop = parseInt(getComputedStyle(targetImg).top),
-    //     newY  =  posTop + e.deltaY;
+    // Configure Y pan
+    var imgHeight = parseInt(getComputedStyle(myElement).height),
+        minY = 0,
+        maxY = viewportHeight - imgHeight,
+        posTop = parseInt(getComputedStyle(targetImg).top),
+        newY  =  posTop + e.deltaY;
 
-    // if(imgHeight < viewportHeight || newY > minY) {
-    //     newY = minY ;
-    // } else if (newY < maxY) {
-    //     newY = maxY;
-    // }
-    // targetImg.style.top = newY + 'px';
+    if(imgHeight < viewportHeight || newY > minY) {
+        newY = minY ;
+    } else if (newY < maxY) {
+        newY = maxY;
+    }
+    targetImg.style.top = newY + 'px';
 
-    // jQuery('#viewportP').html('vH ' + viewportHeight);
-    // jQuery('#widthImg').html('imgw ' + maxY);
-    // jQuery('#lefpos').html('posTopz ' + posTop);
+    jQuery('#viewportP').html('vH ' + viewportHeight);
+    jQuery('#widthImg').html('imgw ' + maxY);
+    jQuery('#lefpos').html('posTopz ' + posTop);
 
 }
 
@@ -163,18 +163,18 @@ function resize (e) {
 
 
 
-    //Corner case: Zooming-in and edge is revealed
-    var maxY = viewportHeight - imgHeight;
-    var posTop = parseInt(getComputedStyle(targetImg).top);
+    // //Corner case: Zooming-in and edge is revealed
+    // var maxY = viewportHeight - imgHeight;
+    // var posTop = parseInt(getComputedStyle(targetImg).top);
 
-    if (posTop < maxY) {
-        posTop = maxY;
-        targetImg.style.top = posTop + 'px';
-    }
+    // if (posTop < maxY) {
+    //     posTop = maxY;
+    //     targetImg.style.top = posTop + 'px';
+    // }
 
-    jQuery('#viewportP').html('vH ' + viewportHeight);
-    jQuery('#widthImg').html('imgw ' + maxX);
-    jQuery('#lefpos').html('posTop ' + posTop);
+    // jQuery('#viewportP').html('vH ' + viewportHeight);
+    // jQuery('#widthImg').html('imgw ' + maxX);
+    // jQuery('#lefpos').html('posTop ' + posTop);
 };
 
 
