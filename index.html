@@ -22,13 +22,25 @@ p { font-size: 60px;}
         zoom: 2;
 }
 
-body {background-color: cornflowerblue;
+body, div, img {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-color: cornflowerblue;
     border: 2px solid red;
     }
 
 #wrapper {
     border: 2px solid yellow;
-    overflow: auto;
+    position: relative;
+}
+
+#targetImg {
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 </style>
@@ -51,14 +63,15 @@ body {background-color: cornflowerblue;
 
 <script type="text/javascript">
 
-var myElement = document.getElementById('wrapper');
+var myElement = document.getElementById('wrapper'), 
+    targetImg = document.getElementById('targetImg');
 var thisBody = document.body;
 var minWidth = jQuery(window).width();
 
 console.log(myElement);
 
 
-Hammer.defaults.behavior.touchAction = 'pan-x';
+// Hammer.defaults.behavior.touchAction = 'pan-x';
 
 var hammertime = new Hammer(myElement);
 
@@ -73,9 +86,9 @@ hammertime.get('rotate').set({ enable: false });
 // jQuery('#textbox').html(minWidth);
 
 hammertime.on('pan', function(e) {
-    // var imgWidth = parseInt(getComputedStyle(myElement).width);
-    var deltaX = e.deltaX;
-    jQuery('#textbox').html(deltaX);
+    var imgLeft = parseInt(getComputedStyle(targetImg).left);
+    var total  =  imgLeft - e.deltaX;
+    jQuery('#textbox').html(total);
 
     // jQuery('body').scrollLeft -= deltaX;
     // hammertime.style.zoom('300%');
@@ -90,7 +103,6 @@ hammertime.on('pinch', resize);
 // hammertime.on('pinchout', resize);
 
 function resize (e) {
-
     var imgWidth = parseInt(getComputedStyle(myElement).width);
     var deltaY = e.deltaY;
     var total = imgWidth - deltaY;
@@ -101,39 +113,8 @@ function resize (e) {
     thisBody.style.width = total + 'px';
 
 
-    e.preventDefault();
+
 };
-
-// var myElement = document.getElementById('wrapper');
-// var myOptions = {
-//             drag_block_vertical: true,
-//             drag_block_horizontal: true
-//         };
-// var hammertime = new Hammer(myElement);
-// // hammertime.get('pinch').set({ enable: true });
-
-// console.log('hammer 2 ');
-
-
-// hammertime.on('pinch', function(ev) {
-//     console.log('pinch');
-//     console.log(ev);
-// });
-
-// hammertime.on('pinchin', function(ev) {
-//     console.log('pinchin');
-// });
-
-
-
-//     // Pinc gesture
-
-// var hammertime = Hammer(myElement).on("pinchin", function(event) {
-
-//     $('#textbox').html("Pinch In");
-
-// });
-
 
 
 // console.log('woo ohoo');
