@@ -20,7 +20,7 @@ body, div, img {
 }
 
 body {
-    background-color: green;
+    background-color: pink;
     border: 2px solid red;
     }
 
@@ -68,8 +68,9 @@ body {
 <script type="text/javascript">
 
 var wrapper = document.getElementById('wrapper'), 
-    targetImg = document.getElementById('targetImg');
-var thisBody = document.body;
+    targetImg = document.getElementById('targetImg'),
+    thisBody = document.body,
+    rate = 0.33; // This slows down the response to pinch and pan
 
 var viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 var viewportHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
@@ -143,7 +144,7 @@ function panImage (e) {
     } else if (newLeft < maxLeft) {
         newLeft = maxLeft;
     }
-    targetImg.style.left = newLeft + 'px';
+    targetImg.style.left = (newLeft * rate) + 'px';
 
 
     // Configure Vertical Pan
@@ -157,7 +158,7 @@ function panImage (e) {
     } else if (newTop < maxTop) {
         newTop = maxTop;
     }
-    targetImg.style.top = newTop + 'px';
+    targetImg.style.top = (newTop * rate) + 'px';
 
 }
 
@@ -175,8 +176,7 @@ function resize (e, direction) {
 
 
     var delta = direction * Math.sqrt( (e.deltaY * e.deltaY) + (e.deltaX * e.deltaX) ); // Calculus formula
-    var rate = 0.5; // Slow it down
-    var newWidth = imgWidth + delta * rate;
+    var newWidth = imgWidth + delta;
 
     var minZoom = viewportWidth,
         maxZoom = viewportWidth * 2.5;
@@ -187,8 +187,8 @@ function resize (e, direction) {
         newWidth = maxZoom;
     }
 
-    wrapper.style.width = newWidth + 'px';
-    thisBody.style.width = newWidth + 'px';
+    wrapper.style.width = (newWidth * rate) + 'px';
+    thisBody.style.width = (newWidth * rate) + 'px';
 
 
     /* Now reposition top and left according to initial ratio. */
