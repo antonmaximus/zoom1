@@ -86,11 +86,11 @@ hammertime.get('swipe').set({ enable: false });
 hammertime.on('pan', panImage);
 hammertime.on('pinch', resize);
 
-
-var imgWidth = parseInt(getComputedStyle(wrapper).width);
-var imgHeight = parseInt(getComputedStyle(wrapper).height);
-jQuery('#viewportP').html('vHx ' + imgHeight + ' vw: ' + imgWidth);
-
+Hammer(document.getElementById('blue')).on('tap', function(e) {
+    var imgWidth = parseInt(getComputedStyle(wrapper).width);
+    var imgHeight = parseInt(getComputedStyle(wrapper).height);
+    jQuery('#viewportP').html('vH1 ' + imgHeight + ' vw: ' + imgWidth);
+});
 
 
 function panImage (e) {
