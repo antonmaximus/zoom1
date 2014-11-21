@@ -89,7 +89,9 @@ hammertime.get('swipe').set({ enable: false });
 
 // Event Listeners
 hammertime.on('pan', panImage);
-hammertime.on('pinchin', function(e){ resize(e, -1); };
+hammertime.on('pinchin', function(e){ 
+    jQuery('#blue1').html('inning');
+    resize(e, -1); };
 hammertime.on('pinchout', function(e){ resize(e, 1); };
 hammertime.on('doubletap', showFull);
 
