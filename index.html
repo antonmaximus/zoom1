@@ -49,7 +49,7 @@ body {
 </div>
 
 <div id='blue'>
-<p id='viewportP'>hellow a </p>
+<p id='viewportP'>hellow qq </p>
 <p id='widthImg'>hellow aa </p>
 <p id='lefpos'>hellow aa </p>
 </div>
@@ -114,7 +114,7 @@ function panImage (e) {
         posTop = parseInt(getComputedStyle(targetImg).top),
         totalY  =  posTop + e.deltaY;
 
-    if(totalY > minY) {
+    if(totalY > minY || imgHeight < viewportHeight) {
         totalY = minY ;
     } else if (totalY < maxY) {
         totalY = maxY;
