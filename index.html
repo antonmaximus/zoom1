@@ -93,14 +93,12 @@ hammertime.on('pinch', resize);
 
 function panImage (e) {
 
+    // Configure X pan
     var imgWidth = parseInt(getComputedStyle(myElement).width),
         minX = 0,
         maxX = viewportWidth - imgWidth,
         posLeft = parseInt(getComputedStyle(targetImg).left),
         totalX  =  posLeft + e.deltaX;
-    // jQuery('#viewportP').html('vW ' + viewportWidth);
-    // jQuery('#widthImg').html('imgw ' + maxX);
-    // jQuery('#lefpos').html('lefpos ' + posLeft);
 
     if(totalX > minX) {
         totalX = minX ;
@@ -109,7 +107,7 @@ function panImage (e) {
     }
     targetImg.style.left = totalX + 'px';
 
-
+    // Configure Y pan
     var imgHeight = parseInt(getComputedStyle(myElement).height),
         minY = 0,
         maxY = viewportHeight - imgHeight,
@@ -122,6 +120,11 @@ function panImage (e) {
         totalY = maxY;
     }
     targetImg.style.top = totalY + 'px';
+
+    jQuery('#viewportP').html('vH ' + viewportHeight);
+    jQuery('#widthImg').html('imgw ' + maxY);
+    jQuery('#lefpos').html('posTop ' + posTop);
+
 }
 
 
