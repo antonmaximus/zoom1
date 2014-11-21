@@ -41,7 +41,7 @@ body {background-color: cornflowerblue;
 </div>
 
 <div id='blue'>
-<p id='textbox'>hellow 11 </p>
+<p id='textbox'>hellow 22 </p>
 </div>
 
 
@@ -58,7 +58,7 @@ var minWidth = jQuery(window).width();
 console.log(myElement);
 
 
-// Hammer.defaults.behavior.touchAction = 'pan-x';
+Hammer.defaults.behavior.touchAction = 'pan-x';
 
 var hammertime = new Hammer(myElement);
 
@@ -90,6 +90,7 @@ hammertime.on('pinch', resize);
 // hammertime.on('pinchout', resize);
 
 function resize (e) {
+
     var imgWidth = parseInt(getComputedStyle(myElement).width);
     var deltaY = e.deltaY;
     var total = imgWidth - deltaY;
@@ -100,7 +101,7 @@ function resize (e) {
     thisBody.style.width = total + 'px';
 
 
-
+    e.preventDefault();
 };
 
 // var myElement = document.getElementById('wrapper');
