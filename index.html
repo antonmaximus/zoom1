@@ -144,13 +144,7 @@ function resize (e) {
         targetImg.style.left = posLeft + 'px';
     }
 
-    // var maxY = viewportHeight - imgHeight;
-    // var posTop = parseInt(getComputedStyle(targetImg).top);
 
-    // if (posTop != 0) {
-    //     posTop = maxY;
-    //     targetImg.style.left = posTop + 'px';
-    // }
 
 
     jQuery('#viewportP').html('vW ' + viewportWidth);
@@ -167,6 +161,19 @@ function resize (e) {
     myElement.style.width = newWidth + 'px';
     thisBody.style.width = newWidth + 'px';
 
+
+    //Corner case: Zooming-in and edge is revealed
+    var maxY = viewportHeight - imgHeight;
+    var posTop = parseInt(getComputedStyle(targetImg).top);
+
+    if (posTop != 0) {
+        posTop = maxY;
+        targetImg.style.left = posTop + 'px';
+    }
+
+    jQuery('#viewportP').html('vH ' + viewportHeight);
+    jQuery('#widthImg').html('imgw ' + maxX);
+    jQuery('#lefpos').html('posTop ' + posTop);
 };
 
 
