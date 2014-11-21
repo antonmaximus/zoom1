@@ -88,10 +88,11 @@ hammertime.on('pinch', resize);
 
 Hammer(document.getElementById('blue')).on('tap', function(e) {
     // var imgWidth = parseInt(getComputedStyle(wrapper).width);
-    // var imgHeight = parseInt(getComputedStyle(wrapper).height);
+    var imgHeight = parseInt(getComputedStyle(wrapper).height);
 var viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 var viewportHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-    jQuery('#viewportP').html('vH ' + viewportHeight + ' vw: ' + viewportWidth);
+    jQuery('#viewportP').html('xvH ' + viewportHeight + ' vw: ' + viewportWidth);
+    jQuery('#widthImg').html(imgHeight);
 });
 
 
