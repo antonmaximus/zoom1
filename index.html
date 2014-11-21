@@ -20,7 +20,7 @@ body, div, img {
 }
 
 body {
-    background-color: blue;
+    background-color: pink;
     border: 2px solid red;
     }
 
@@ -207,7 +207,7 @@ function resize (e, direction) {
     targetImg.style.left = newLeft + 'px';
     targetImg.style.top = newTop + 'px';
 
-    jQuery('#blue1').html('direction: ' + direction + '\n delta is  ' + delta + ' X: ' + e.deltaX + ' Y: ' + e.deltaY);
+    jQuery('#blue1').html('direction: ' + direction + '\n VW: ' + viewportWidth + ' VH: ' + viewportHeight);
     jQuery('#blue2').html('newTop ' + newTop);
 
 
