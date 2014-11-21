@@ -47,7 +47,7 @@ body {
 </div>
 
 <div id='blue'>
-<p id='viewportP'>222 qq </p>
+<p id='viewportP'>aa qq </p>
 <p id='widthImg'>hellow aa </p>
 <p id='lefpos'>hellow aa </p>
 </div>
@@ -92,18 +92,18 @@ hammertime.on('pinch', resize);
 function panImage (e) {
 
     // Configure X pan
-    // var imgWidth = parseInt(getComputedStyle(myElement).width),
-    //     minX = 0,
-    //     maxX = viewportWidth - imgWidth,
-    //     posLeft = parseInt(getComputedStyle(targetImg).left),
-    //     totalX  =  posLeft + e.deltaX;
+    var imgWidth = parseInt(getComputedStyle(myElement).width),
+        minX = 0,
+        maxX = viewportWidth - imgWidth,
+        posLeft = parseInt(getComputedStyle(targetImg).left),
+        totalX  =  posLeft + e.deltaX;
 
-    // if(totalX > minX) {
-    //     totalX = minX ;
-    // } else if (totalX < maxX) {
-    //     totalX = maxX;
-    // }
-    // targetImg.style.left = totalX + 'px';
+    if(totalX > minX) {
+        totalX = minX ;
+    } else if (totalX < maxX) {
+        totalX = maxX;
+    }
+    targetImg.style.left = totalX + 'px';
 
     // Configure Y pan
     var imgHeight = parseInt(getComputedStyle(myElement).height),
@@ -128,11 +128,22 @@ function panImage (e) {
 
 function resize (e) {
     var imgWidth = parseInt(getComputedStyle(myElement).width);
+    var imgHeight = parseInt(getComputedStyle(myElement).height);
     var deltaY = e.deltaY;
     var newWidth = imgWidth - deltaY;
 
     var minZoom = viewportWidth;
     var maxZoom = viewportWidth * 3;
+
+    if( newWidth < minZoom) {
+        newWidth = minZoom;
+    } else if (newWidth > maxZoom) {
+        newWidth = maxZoom;
+    }
+
+    myElement.style.width = newWidth + 'px';
+    thisBody.style.width = newWidth + 'px';
+
 
 
     //Corner case: Zooming-in and edge is revealed
@@ -144,22 +155,10 @@ function resize (e) {
         targetImg.style.left = posLeft + 'px';
     }
 
-
-
-
     jQuery('#viewportP').html('vW ' + viewportWidth);
     jQuery('#widthImg').html('imgw ' + maxX);
     jQuery('#lefpos').html('lefpos ' + posLeft);
 
-    if( newWidth < minZoom) {
-        newWidth = minZoom;
-    } else if (newWidth > maxZoom) {
-        newWidth = maxZoom;
-    }
-
-    jQuery('#textbox').html(newWidth);
-    myElement.style.width = newWidth + 'px';
-    thisBody.style.width = newWidth + 'px';
 
 
     //Corner case: Zooming-in and edge is revealed
