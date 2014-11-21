@@ -20,7 +20,7 @@ body, div, img {
 }
 
 body {
-    background-color: pink;
+    background-color: yellow;
     border: 2px solid red;
     }
 
@@ -132,6 +132,7 @@ function showFull(e) {
 /* due to Hammer.js */
 function panImage (e) {
 
+jQuery('#blue1').html('panActive');
     // These variables need to be local since orientation can change.
     var imgWidth = parseInt(getComputedStyle(wrapper).width),
         imgHeight = parseInt(getComputedStyle(wrapper).height),
