@@ -41,7 +41,7 @@ body {background-color: cornflowerblue;
 </div>
 
 <div id='blue'>
-<p id='textbox'>hellow 33 </p>
+<p id='textbox'>hellow 11 </p>
 </div>
 
 
@@ -77,11 +77,12 @@ hammertime.on('pan', function(e) {
     var deltaX = e.deltaX;
     jQuery('#textbox').html(deltaX);
 
-    jQuery('body').scrollLeft -= deltaX;
+    // jQuery('body').scrollLeft -= deltaX;
     // hammertime.style.zoom('300%');
 
     // e.target.style.webkitTransform =
     //     'scale(' + (e.scale  + 0.5) + ')';
+    return true; 
 });
 
 
