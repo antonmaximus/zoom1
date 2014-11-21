@@ -50,7 +50,8 @@ body {
 
 <div id='blue'>
 <p id='viewportP'>hellow 11 </p>
-<p id='textbox'>hellow aa </p>
+<p id='widthImg'>hellow aa </p>
+<p id='lefpos'>hellow aa </p>
 </div>
 
 
@@ -93,7 +94,9 @@ hammertime.on('pan', function(e) {
 
     var imgLeft = parseInt(getComputedStyle(targetImg).left);
     var totalX  =  imgLeft + e.deltaX;
-    jQuery('#textbox').html(imgLeft);
+    jQuery('#viewportP').html('vW ' + viewportWidth);
+    jQuery('#widthImg').html('imgw ' + maxX);
+    jQuery('#lefpos').html('lefpos ' + imgLeft);
 
     if(totalX > minX) {
         totalX = minX ;
