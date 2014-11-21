@@ -47,7 +47,7 @@ body {
 </div>
 
 <div id='blue'>
-<p id='viewportP'>cc qq </p>
+<p id='viewportP'>aas qq </p>
 <p id='widthImg'>hellow aa </p>
 <p id='lefpos'>hellow aa </p>
 </div>
@@ -144,13 +144,13 @@ function resize (e) {
         targetImg.style.left = posLeft + 'px';
     }
 
-    var maxY = viewportHeight - imgHeight;
-    var posTop = parseInt(getComputedStyle(targetImg).top);
+    // var maxY = viewportHeight - imgHeight;
+    // var posTop = parseInt(getComputedStyle(targetImg).top);
 
-    if (posTop != 0) {
-        posTop = maxY;
-        targetImg.style.left = posTop + 'px';
-    }
+    // if (posTop != 0) {
+    //     posTop = maxY;
+    //     targetImg.style.left = posTop + 'px';
+    // }
 
 
     jQuery('#viewportP').html('vW ' + viewportWidth);
