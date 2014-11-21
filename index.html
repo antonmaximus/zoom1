@@ -49,7 +49,7 @@ body {
 </div>
 
 <div id='blue'>
-<p id='viewportP'>hellow aaa </p>
+<p id='viewportP'>hellow 111 </p>
 <p id='widthImg'>hellow aa </p>
 <p id='lefpos'>hellow aa </p>
 </div>
@@ -67,6 +67,7 @@ var thisBody = document.body;
 var minWidth = jQuery(window).width();
 
 var viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+var viewportHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
 console.log(myElement);
 
 
@@ -100,7 +101,7 @@ function panImage (e) {
 
     var imgHeight = parseInt(getComputedStyle(myElement).height),
         minY = 0,
-        maxY = viewportWidth - imgHeight,
+        maxY = viewportHeight - imgHeight,
         posTop = parseInt(getComputedStyle(targetImg).top),
         totalY  =  posTop + e.deltaY;
 
