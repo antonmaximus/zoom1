@@ -91,7 +91,7 @@ hammertime.on('pinch', resize);
 
 
 // jQuery('#green').hide();
-Hammer(document.getElementById('blue')).on('tap', function(e) {
+Hammer(document.getElementById('green')).on('tap', function(e) {
     // var imgWidth = parseInt(getComputedStyle(wrapper).width);
     var imgHeight = parseInt(getComputedStyle(wrapper).height);
 var viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
@@ -100,7 +100,7 @@ var viewportHeight = Math.max(document.documentElement.clientHeight, window.inne
     var frameWidth = window.frameElement.offsetWidth;
     var frameHeight = window.frameElement.offsetHeight;
 
-    jQuery('#green1').html('xvH ' + frameHeight + ' vw: ' + frameWidth);
+    jQuery('#green1').html('avH ' + frameHeight + ' vw: ' + frameWidth);
     jQuery('#green2').html(imgHeight);
 });
 
