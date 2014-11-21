@@ -89,10 +89,7 @@ hammertime.get('swipe').set({ enable: false });
 
 // Event Listeners
 hammertime.on('pan', panImage);
-hammertime.on('pinchin', function(e){ 
-    jQuery('#blue1').html('inning');
-    resize(e, -1); 
-});
+hammertime.on('pinchin', function(e){ resize(e, -1); });
 hammertime.on('pinchout', function(e){ resize(e, 1); });
 hammertime.on('doubletap', showFull);
 
@@ -177,7 +174,7 @@ function resize (e, direction) {
         ratioTop = parseInt(getComputedStyle(targetImg).top) / imgHeight;   
 
 
-    var delta = Math.sqrt( (e.deltaY * e.deltaY) + (e.deltaX * e.deltaX) ); // Calculus formula
+    var delta = direction * Math.sqrt( (e.deltaY * e.deltaY) + (e.deltaX * e.deltaX) ); // Calculus formula
     var newWidth = imgWidth + delta;
 
     var minZoom = viewportWidth;
