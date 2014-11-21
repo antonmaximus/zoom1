@@ -131,19 +131,18 @@ function panImage (e) {
 
 
 
-    // // Configure X pan
-    // var imgWidth = parseInt(getComputedStyle(wrapper).width),
-    //     minX = 0,
-    //     maxX = viewportWidth - imgWidth,
-    //     posLeft = parseInt(getComputedStyle(targetImg).left),
-    //     totalX  =  posLeft + e.deltaX;
+    // Configure Horizontal Pan
+    var minLeft = 0,
+        maxLeft = frameWidth - imgWidth,
+        posLeft = parseInt(getComputedStyle(targetImg).left),
+        newLeft  =  posLeft + e.deltaX;
 
-    // if(imgWidth < viewportWidth || totalX > minX) {
-    //     totalX = minX ;
-    // } else if (totalX < maxX) {
-    //     totalX = maxX;
-    // }
-    // targetImg.style.left = totalX + 'px';
+    if(imgWidth < frameWidth || newLeft > minLeft) {
+        newLeft = minLeft ;
+    } else if (newLeft < maxLeft) {
+        newLeft = maxLeft;
+    }
+    targetImg.style.left = newLeft + 'px';
 
 
     // Configure Vertical Pan
@@ -159,21 +158,6 @@ function panImage (e) {
     }
     targetImg.style.top = newTop + 'px';
 
-
-    // Configure Horizontal Pan
-    var minLeft = 0,
-        maxLeft = frameWidth - imgWidth,
-        posLeft = parseInt(getComputedStyle(targetImg).left),
-        newLeft  =  posLeft + e.deltaX;
-
-    if(imgWidth < frameWidth || newLeft > minLeft) {
-        newLeft = minLeft ;
-    } else if (newLeft < maxLeft) {
-        newLeft = maxLeft;
-    }
-    targetImg.style.left = newLeft + 'px';
-
-
 }
 
 
@@ -183,6 +167,11 @@ function resize (e) {
         imgHeight = parseInt(getComputedStyle(wrapper).height),
         viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0),
         viewportHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+
+    // Save ratio for keeping position intact
+    var ratioLeft = parseInt(getComputedStyle(targetImg).left) / imgWidth,
+        ratioTop = parseInt(getComputedStyle(targetImg).top) / imgHeight;   
+
 
     var deltaY = e.deltaY;
     var newWidth = imgWidth - deltaY;
@@ -200,6 +189,13 @@ function resize (e) {
     thisBody.style.width = newWidth + 'px';
 
 
+    /* Now reposition top and left according to initial ratio. */
+    var newHeight = newWidth * (imgHeight/imgWidth);  // This is the new height in theory.
+    var newLeft = ratioLeft * newWidth,
+        newTop = ratioTop * newHeight;
+
+    targetImg.style.left = newLeft + 'px';
+    targetImg.style.top = newTop + 'px';
 
     // //Corner case: Zooming-in and edge is revealed
     // var maxX = viewportWidth - imgWidth;
