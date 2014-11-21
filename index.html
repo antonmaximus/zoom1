@@ -108,21 +108,18 @@ jQuery('#green').hide();
 // });
 
 function showFull(e) {
-// These variables need to be local due to orientation changing
-var imgWidth = parseInt(getComputedStyle(wrapper).width),
-    imgHeight = parseInt(getComputedStyle(wrapper).height),
-    viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0),
-    viewportHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-
+    // Set everything to default
     thisBody.style.width = '100%'
     wrapper.style.width = '100%';
 
     targetImg.style.top = '0';
     targetImg.style.left = '0';
-
-
 }
 
+
+/* 'panImage' will modify left and top positions to appear that the user is scrolling on the 
+/* image.  We use this approach because default scrolling will not work correctly
+/* due to Hammer.js */
 function panImage (e) {
 
     // These variables need to be local since orientation can change.
@@ -149,7 +146,6 @@ function panImage (e) {
     // targetImg.style.left = totalX + 'px';
 
 
-
     // Configure Vertical Pan
     var minTop = 0,
         maxTop = frameHeight - imgHeight,
@@ -163,9 +159,20 @@ function panImage (e) {
     }
     targetImg.style.top = newTop + 'px';
 
-    jQuery('#viewportP').html('imgH ' + imgHeight + ' vH ' + frameHeight);
-    jQuery('#widthImg').html('imgw ' + maxTop);
-    jQuery('#lefpos').html('posTopz ' + posTop);
+
+    // Configure Horizontal Pan
+    var minLeft = 0,
+        maxLeft = frameWidth - imgWidth,
+        posLeft = parseInt(getComputedStyle(targetImg).left),
+        newLeft  =  posLeft + e.deltaX;
+
+    if(imgWidth < frameWidth || newLeft > minLeft) {
+        newLeft = minLeft ;
+    } else if (newLeft < maxLeft) {
+        newLeft = maxLeft;
+    }
+    targetImg.style.left = newLeft + 'px';
+
 
 }
 
