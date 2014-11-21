@@ -79,8 +79,9 @@ var hammertime = new Hammer(wrapper);
 
 hammertime.get('pinch').set({ enable: true }); //Pinch is disabled by default
 
-// hammertime.get('pan').set({ enable: false });  //Pan is enabled by default
-hammertime.get('tap').set({ enable: false });
+// Items below are enabled by default
+// hammertime.get('pan').set({ enable: false });  
+// hammertime.get('tap').set({ enable: false });
 hammertime.get('press').set({ enable: false });
 hammertime.get('rotate').set({ enable: false });
 hammertime.get('swipe').set({ enable: false });
@@ -89,7 +90,7 @@ hammertime.get('swipe').set({ enable: false });
 // Event Listeners
 hammertime.on('pan', panImage);
 hammertime.on('pinch', resize);
-
+hammertime.on('doubletap', showFull);
 
 jQuery('#green').hide();
 // Hammer(document.getElementById('green')).on('tap', function(e) {
@@ -106,6 +107,19 @@ jQuery('#green').hide();
 //     jQuery('#green2').html(imgHeight);
 // });
 
+function showFull(e) {
+// These variables need to be local due to orientation changing
+var imgWidth = parseInt(getComputedStyle(wrapper).width),
+    imgHeight = parseInt(getComputedStyle(wrapper).height),
+    viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0),
+    viewportHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+
+    thisBody.style.width = '100%'
+    wrapper.style.width = '100%';
+
+
+
+}
 
 function panImage (e) {
 
@@ -165,7 +179,7 @@ function resize (e) {
     var newWidth = imgWidth - deltaY;
 
     var minZoom = viewportWidth;
-    var maxZoom = viewportWidth * 3;
+    var maxZoom = viewportWidth * 2.5;
 
     if( newWidth < minZoom) {
         newWidth = minZoom;
