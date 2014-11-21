@@ -197,6 +197,11 @@ function resize (e) {
     targetImg.style.left = newLeft + 'px';
     targetImg.style.top = newTop + 'px';
 
+    jQuery('#viewportP').html('newLeft ' + newLeft);
+    jQuery('#widthImg').html('newTop ' + newTop);
+
+
+
     // //Corner case: Zooming-in and edge is revealed
     // var maxX = viewportWidth - imgWidth;
     // var posLeft = parseInt(getComputedStyle(targetImg).left);
