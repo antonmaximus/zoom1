@@ -20,7 +20,7 @@ body, div, img {
 }
 
 body {
-    background-color: pink;
+    background-color: green;
     border: 2px solid red;
     }
 
@@ -175,10 +175,11 @@ function resize (e, direction) {
 
 
     var delta = direction * Math.sqrt( (e.deltaY * e.deltaY) + (e.deltaX * e.deltaX) ); // Calculus formula
-    var newWidth = imgWidth + delta;
+    var rate = 0.5; // Slow it down
+    var newWidth = imgWidth + delta * rate;
 
-    var minZoom = viewportWidth;
-    var maxZoom = viewportWidth * 2.5;
+    var minZoom = viewportWidth,
+        maxZoom = viewportWidth * 2.5;
 
     if( newWidth < minZoom) {
         newWidth = minZoom;
