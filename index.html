@@ -49,6 +49,7 @@ body {
 </div>
 
 <div id='blue'>
+<p id='viewportP'>hellow 11 </p>
 <p id='textbox'>hellow aa </p>
 </div>
 
@@ -94,9 +95,9 @@ hammertime.on('pan', function(e) {
     var totalX  =  imgLeft + e.deltaX;
     jQuery('#textbox').html(imgLeft);
 
-    // if(totalX < -maxX) {
-    //     totalX = viewportWidth;
-    // }
+    if(totalX > minX) {
+        totalX = minX ;
+    }
 
     targetImg.style.left = totalX + 'px';
     // hammertime.style.zoom('300%');
