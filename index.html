@@ -54,7 +54,7 @@ body {
 </div>
 
 <div id='blue'>
-<p id='textbox'>hellow 11 </p>
+<p id='textbox'>hellow aa </p>
 </div>
 
 
@@ -88,10 +88,10 @@ hammertime.get('rotate').set({ enable: false });
 
 hammertime.on('pan', function(e) {
     var imgLeft = parseInt(getComputedStyle(targetImg).left);
-    var totalX  =  imgLeft - e.deltaX;
+    var totalX  =  imgLeft + e.deltaX;
     jQuery('#textbox').html(totalX);
 
-    targetImg.style.left = totalX;
+    targetImg.style.left = totalX + 'px';
     // hammertime.style.zoom('300%');
 
     // e.target.style.webkitTransform =
