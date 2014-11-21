@@ -90,20 +90,20 @@ hammertime.on('pan', panImage);
 hammertime.on('pinch', resize);
 
 
-// jQuery('#green').hide();
-Hammer(document.getElementById('green')).on('tap', function(e) {
-    // var imgWidth = parseInt(getComputedStyle(wrapper).width);
-    var imgHeight = parseInt(getComputedStyle(wrapper).height);
-var viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-var viewportHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+jQuery('#green').hide();
+// Hammer(document.getElementById('green')).on('tap', function(e) {
+//     // var imgWidth = parseInt(getComputedStyle(wrapper).width);
+//     var imgHeight = parseInt(getComputedStyle(wrapper).height);
+// var viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+// var viewportHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
 
-     var   frameWidth = window.frameElement.offsetHeight || Math.max(document.documentElement.clientWidth, window.innerWidth || 0), 
-        frameHeight = window.frameElement.offsetHeight|| Math.max(document.documentElement.clientWidth, window.innerHeight || 0);
+//      var   frameWidth = window.frameElement.offsetWidth || Math.max(document.documentElement.clientWidth, window.innerWidth || 0), 
+//         frameHeight = window.frameElement.offsetHeight|| Math.max(document.documentElement.clientWidth, window.innerHeight || 0);
 
 
-    jQuery('#green1').html('1vH ' + frameHeight + ' vw: ' + frameWidth);
-    jQuery('#green2').html(imgHeight);
-});
+//     jQuery('#green1').html('1vH ' + frameHeight + ' vw: ' + frameWidth);
+//     jQuery('#green2').html(imgHeight);
+// });
 
 
 function panImage (e) {
@@ -112,8 +112,8 @@ function panImage (e) {
     var imgWidth = parseInt(getComputedStyle(wrapper).width),
         imgHeight = parseInt(getComputedStyle(wrapper).height),
         // frameWidth & frameHeight: Use parent iframe's size by default.  Use viewport's size as fallback.
-        frameWidth = window.frameElement.offsetHeight || Math.max(document.documentElement.clientWidth, window.innerWidth || 0), 
-        frameHeight = window.frameElement.offsetHeight|| Math.max(document.documentElement.clientWidth, window.innerHeight || 0);
+        frameWidth = /*window.frameElement.offsetWidth ||*/ Math.max(document.documentElement.clientWidth, window.innerWidth || 0), 
+        frameHeight = /*window.frameElement.offsetHeight||*/ Math.max(document.documentElement.clientWidth, window.innerHeight || 0);
 
 
 
@@ -135,18 +135,18 @@ function panImage (e) {
 
     // Configure Vertical Pan
     var minTop = 0,
-        maxTop = viewportHeight - imgHeight,
+        maxTop = frameHeight - imgHeight,
         posTop = parseInt(getComputedStyle(targetImg).top),
         newTop  =  posTop + e.deltaY;
 
-    if(imgHeight < viewportHeight || newTop > minTop) {
+    if(imgHeight < frameHeight || newTop > minTop) {
         newTop = minTop ;
-    } else if (newY < maxTop) {
+    } else if (newTop < maxTop) {
         newTop = maxTop;
     }
     targetImg.style.top = newTop + 'px';
 
-    jQuery('#viewportP').html('imgH ' + imgHeight + ' vH ' + viewportHeight);
+    jQuery('#viewportP').html('imgH ' + imgHeight + ' vH ' + frameHeight);
     jQuery('#widthImg').html('imgw ' + maxTop);
     jQuery('#lefpos').html('posTopz ' + posTop);
 
