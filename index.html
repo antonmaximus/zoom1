@@ -97,21 +97,24 @@ Hammer(document.getElementById('green')).on('tap', function(e) {
 var viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 var viewportHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
 
-    var frameWidth = window.frameElement.offsetWidth;
-    var frameHeight = window.frameElement.offsetHeight;
+     var   frameWidth = window.frameElement.offsetHeight || Math.max(document.documentElement.clientWidth, window.innerWidth || 0), 
+        frameHeight = window.frameElement.offsetHeight|| Math.max(document.documentElement.clientWidth, window.innerHeight || 0);
 
-    jQuery('#green1').html('avH ' + frameHeight + ' vw: ' + frameWidth);
+
+    jQuery('#green1').html('1vH ' + frameHeight + ' vw: ' + frameWidth);
     jQuery('#green2').html(imgHeight);
 });
 
 
 function panImage (e) {
 
-    // These variables need to be local due to orientation changing
+    // These variables need to be local since orientation can change.
     var imgWidth = parseInt(getComputedStyle(wrapper).width),
         imgHeight = parseInt(getComputedStyle(wrapper).height),
-        viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0),
-        viewportHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+        // frameWidth & frameHeight: Use parent iframe's size by default.  Use viewport's size as fallback.
+        frameWidth = window.frameElement.offsetHeight || Math.max(document.documentElement.clientWidth, window.innerWidth || 0), 
+        frameHeight = window.frameElement.offsetHeight|| Math.max(document.documentElement.clientWidth, window.innerHeight || 0);
+
 
 
     // // Configure X pan
