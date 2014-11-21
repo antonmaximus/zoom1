@@ -49,7 +49,7 @@ body {
 </div>
 
 <div id='blue'>
-<p id='viewportP'>hellow qq </p>
+<p id='viewportP'>aaa qq </p>
 <p id='widthImg'>hellow aa </p>
 <p id='lefpos'>hellow aa </p>
 </div>
@@ -112,14 +112,14 @@ function panImage (e) {
         minY = 0,
         maxY = viewportHeight - imgHeight,
         posTop = parseInt(getComputedStyle(targetImg).top),
-        totalY  =  posTop + e.deltaY;
+        newY  =  posTop + e.deltaY;
 
-    if(totalY > minY || imgHeight < viewportHeight) {
-        totalY = minY ;
-    } else if (totalY < maxY) {
-        totalY = maxY;
+    if(newY > minY || imgHeight < viewportHeight) {
+        newY = minY ;
+    } else if (newY < maxY) {
+        newY = maxY;
     }
-    targetImg.style.top = totalY + 'px';
+    targetImg.style.top = newY + 'px';
 
     jQuery('#viewportP').html('vH ' + viewportHeight);
     jQuery('#widthImg').html('imgw ' + maxY);
@@ -136,6 +136,7 @@ function resize (e) {
     var minZoom = viewportWidth;
     var maxZoom = viewportWidth * 3;
 
+    hammertime.trigger('pan', panImage);
 
     //Corner case: Zooming-in and edge is revealed
     var maxX = viewportWidth - imgWidth;
