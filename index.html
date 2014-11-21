@@ -92,16 +92,21 @@ hammertime.on('pinch', resize);
 
 function panImage (e) {
 
-    var imgWidth = parseInt(getComputedStyle(myElement).width);
-    var minX = 0;
-    var maxX = viewportWidth - imgWidth;
+    var imgWidth = parseInt(getComputedStyle(myElement).width),
+        minX = 0,
+        maxX = viewportWidth - imgWidth,
+        posLeft = parseInt(getComputedStyle(targetImg).left),
+        totalX  =  posLeft + e.deltaX;
 
-    var posLeft = parseInt(getComputedStyle(targetImg).left);
+    var imgHeight = parseInt(getComputedStyle(myElement).height),
+        minY = 0,
+        maxY = viewportWidth - imgHeight,
+        posTop = parseInt(getComputedStyle(targetImg).top),
+        totalY  =  posTop + e.deltaY;
 
-    var totalX  =  posLeft + e.deltaX;
-    jQuery('#viewportP').html('vW ' + viewportWidth);
-    jQuery('#widthImg').html('imgw ' + maxX);
-    jQuery('#lefpos').html('lefpos ' + posLeft);
+    // jQuery('#viewportP').html('vW ' + viewportWidth);
+    // jQuery('#widthImg').html('imgw ' + maxX);
+    // jQuery('#lefpos').html('lefpos ' + posLeft);
 
     if(totalX > minX) {
         totalX = minX ;
@@ -109,12 +114,15 @@ function panImage (e) {
         totalX = maxX;
     }
 
-    targetImg.style.left = totalX + 'px';
-    // hammertime.style.zoom('300%');
+    if(totalY > minY) {
+        totalY = minY ;
+    } else if (totalY < maxY) {
+        totalY = maxY;
+    }
 
-    // e.target.style.webkitTransform =
-    //     'scale(' + (e.scale  + 0.5) + ')';
-    return true; 
+
+    targetImg.style.left = totalX + 'px';
+    targetImg.style.top = totalY + 'px';
 }
 
 
