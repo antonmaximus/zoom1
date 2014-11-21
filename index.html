@@ -49,7 +49,7 @@ body {
 </div>
 
 <div id='blue'>
-<p id='viewportP'>hellow aa </p>
+<p id='viewportP'>hellow sss </p>
 <p id='widthImg'>hellow aa </p>
 <p id='lefpos'>hellow aa </p>
 </div>
@@ -84,7 +84,13 @@ hammertime.get('rotate').set({ enable: false });
 
 // jQuery('#textbox').html(minWidth);
 
-hammertime.on('pan', function(e) {
+hammertime.on('pan', panImage);
+
+
+hammertime.on('pinch', resize);
+
+
+function panImage (e) {
 
     var imgWidth = parseInt(getComputedStyle(myElement).width);
     var minX = 0;
@@ -109,11 +115,8 @@ hammertime.on('pan', function(e) {
     // e.target.style.webkitTransform =
     //     'scale(' + (e.scale  + 0.5) + ')';
     return true; 
-});
+}
 
-
-hammertime.on('pinch', resize);
-// hammertime.on('pinchout', resize);
 
 function resize (e) {
     var imgWidth = parseInt(getComputedStyle(myElement).width);
@@ -127,13 +130,12 @@ function resize (e) {
         newWidth = minZoom;
     } else if (newWidth > maxZoom) {
         newWidth = maxZoom;
+        hammertime.trigger('pan', panImage);
     }
 
     jQuery('#textbox').html(newWidth);
     myElement.style.width = newWidth + 'px';
     thisBody.style.width = newWidth + 'px';
-
-
 
 };
 
