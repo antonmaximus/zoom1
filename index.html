@@ -87,9 +87,11 @@ hammertime.on('pan', panImage);
 hammertime.on('pinch', resize);
 
 Hammer(document.getElementById('blue')).on('tap', function(e) {
-    var imgWidth = parseInt(getComputedStyle(wrapper).width);
-    var imgHeight = parseInt(getComputedStyle(wrapper).height);
-    jQuery('#viewportP').html('vHq ' + imgHeight + ' vw: ' + imgWidth);
+    // var imgWidth = parseInt(getComputedStyle(wrapper).width);
+    // var imgHeight = parseInt(getComputedStyle(wrapper).height);
+var viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+var viewportHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+    jQuery('#viewportP').html('vH ' + viewportHeight + ' vw: ' + viewportWidth);
 });
 
 
@@ -133,8 +135,9 @@ function panImage (e) {
 
 
 function resize (e) {
-    var imgWidth = parseInt(getComputedStyle(wrapper).width);
-    var imgHeight = parseInt(getComputedStyle(wrapper).height);
+    // imgWidth & imgHeight have to be local due to orientation change
+    var imgWidth = parseInt(getComputedStyle(wrapper).width),
+        imgHeight = parseInt(getComputedStyle(wrapper).height);
     var deltaY = e.deltaY;
     var newWidth = imgWidth - deltaY;
 
