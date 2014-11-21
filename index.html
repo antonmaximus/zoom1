@@ -6,12 +6,6 @@
 <title>MEOW</title>
 <style>
 
-img {
-    width: 100%;
-}
-/*img:hover {
-     width: 200%;
-}*/
 p { font-size: 60px;}
 
 
@@ -42,6 +36,7 @@ body {
     position: relative;
     top: 0;
     left: 0;
+    width: 100%;
 }
 
 </style>
@@ -69,6 +64,7 @@ var myElement = document.getElementById('wrapper'),
 var thisBody = document.body;
 var minWidth = jQuery(window).width();
 
+var viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 console.log(myElement);
 
 
@@ -87,9 +83,20 @@ hammertime.get('rotate').set({ enable: false });
 // jQuery('#textbox').html(minWidth);
 
 hammertime.on('pan', function(e) {
+
+    var maxX = parseInt(getComputedStyle(myElement).width);
+    var minX = 0;
+
+    console.log('Viewwidth is ' + viewportWidth);
+    console.log('width is ' + maxX);
+
     var imgLeft = parseInt(getComputedStyle(targetImg).left);
     var totalX  =  imgLeft + e.deltaX;
-    jQuery('#textbox').html(totalX);
+    jQuery('#textbox').html(imgLeft);
+
+    // if(totalX < -maxX) {
+    //     totalX = viewportWidth;
+    // }
 
     targetImg.style.left = totalX + 'px';
     // hammertime.style.zoom('300%');
