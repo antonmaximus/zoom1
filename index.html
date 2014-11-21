@@ -47,7 +47,7 @@ body {
 </div>
 
 <div id='blue'>
-<p id='viewportP'>11 qq </p>
+<p id='viewportP'>aa qq </p>
 <p id='widthImg'>hellow aa </p>
 <p id='lefpos'>hellow aa </p>
 </div>
@@ -91,19 +91,19 @@ hammertime.on('pinch', resize);
 
 function panImage (e) {
 
-    // Configure X pan
-    var imgWidth = parseInt(getComputedStyle(myElement).width),
-        minX = 0,
-        maxX = viewportWidth - imgWidth,
-        posLeft = parseInt(getComputedStyle(targetImg).left),
-        totalX  =  posLeft + e.deltaX;
+    // // Configure X pan
+    // var imgWidth = parseInt(getComputedStyle(myElement).width),
+    //     minX = 0,
+    //     maxX = viewportWidth - imgWidth,
+    //     posLeft = parseInt(getComputedStyle(targetImg).left),
+    //     totalX  =  posLeft + e.deltaX;
 
-    if(imgWidth < viewportWidth || totalX > minX) {
-        totalX = minX ;
-    } else if (totalX < maxX) {
-        totalX = maxX;
-    }
-    targetImg.style.left = totalX + 'px';
+    // if(imgWidth < viewportWidth || totalX > minX) {
+    //     totalX = minX ;
+    // } else if (totalX < maxX) {
+    //     totalX = maxX;
+    // }
+    // targetImg.style.left = totalX + 'px';
 
     // Configure Y pan
     var imgHeight = parseInt(getComputedStyle(myElement).height),
@@ -146,18 +146,18 @@ function resize (e) {
 
 
 
-    //Corner case: Zooming-in and edge is revealed
-    var maxX = viewportWidth - imgWidth;
-    var posLeft = parseInt(getComputedStyle(targetImg).left);
+    // //Corner case: Zooming-in and edge is revealed
+    // var maxX = viewportWidth - imgWidth;
+    // var posLeft = parseInt(getComputedStyle(targetImg).left);
 
-    if (posLeft < maxX) {
-        posLeft = maxX;
-        targetImg.style.left = posLeft + 'px';
-    }
+    // if (posLeft < maxX) {
+    //     posLeft = maxX;
+    //     targetImg.style.left = posLeft + 'px';
+    // }
 
-    jQuery('#viewportP').html('vW ' + viewportWidth);
-    jQuery('#widthImg').html('imgw ' + maxX);
-    jQuery('#lefpos').html('lefpos ' + posLeft);
+    // jQuery('#viewportP').html('vW ' + viewportWidth);
+    // jQuery('#widthImg').html('imgw ' + maxX);
+    // jQuery('#lefpos').html('lefpos ' + posLeft);
 
 
 
