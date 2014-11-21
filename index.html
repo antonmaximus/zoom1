@@ -27,7 +27,8 @@ body {
 #wrapper {
     border: 2px solid yellow;
     position: relative;
-    height: 100%;
+    height: 100vh;
+    width: 100vw;
 }
 
 #targetImg {
@@ -88,7 +89,7 @@ hammertime.on('pinch', resize);
 
 var imgWidth = parseInt(getComputedStyle(wrapper).width);
 var imgHeight = parseInt(getComputedStyle(wrapper).height);
-jQuery('#viewportP').html('vH ' + imgHeight + ' vw: ' + imgWidth);
+jQuery('#viewportP').html('vHx ' + imgHeight + ' vw: ' + imgWidth);
 
 
 
