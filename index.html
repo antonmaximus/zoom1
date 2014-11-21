@@ -51,8 +51,8 @@ body {
 
 
 <div id='wrapper' >
-    <!-- <img id='targetImg' src="http://a4.mzstatic.com/us/r30/Purple3/v4/8b/27/0b/8b270b51-e479-dfe9-f337-37b02a831edc/icon256.png" alt="" /> -->
-    <img id='targetImg' src="Travel_MoneyTips.png" alt="" />
+    <img id='targetImg' src="http://a4.mzstatic.com/us/r30/Purple3/v4/8b/27/0b/8b270b51-e479-dfe9-f337-37b02a831edc/icon256.png" alt="" />
+    <!-- <img id='targetImg' src="Travel_MoneyTips.png" alt="" /> -->
     <!-- <img id='targetImg' src="http://2.bp.blogspot.com/-VQJMK8PRnI0/UjYaglEkV5I/AAAAAAAAACg/N2MkW6iorr0/s1600/30192_1600x1200-4-cute-cats.jpg" /> -->
 </div>
 
@@ -78,192 +78,208 @@ var viewportWidth = Math.max(document.documentElement.clientWidth, window.innerW
 var viewportHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
 
 
-var hammertime = new Hammer(wrapper);
-
-hammertime.get('pinch').set({ enable: true }); //Pinch is disabled by default
-
-// Items below are enabled by default
-// hammertime.get('pan').set({ enable: false });  
-// hammertime.get('tap').set({ enable: false });
-hammertime.get('press').set({ enable: false });
-hammertime.get('rotate').set({ enable: false });
-hammertime.get('swipe').set({ enable: false });
-
-
-// Event Listeners
-hammertime.on('pan', panImage);
-hammertime.on('pinchin', function(e){ resize(e, -1); });
-hammertime.on('pinchout', function(e){ resize(e, 1); });
-hammertime.on('doubletap', showFull);
-
-jQuery('#green').hide();
-// Hammer(document.getElementById('green')).on('tap', function(e) {
-//     // var imgWidth = parseInt(getComputedStyle(wrapper).width);
-//     var imgHeight = parseInt(getComputedStyle(wrapper).height);
-// var viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-// var viewportHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-
-//      var   frameWidth = window.frameElement.offsetWidth || Math.max(document.documentElement.clientWidth, window.innerWidth || 0), 
-//         frameHeight = window.frameElement.offsetHeight|| Math.max(document.documentElement.clientWidth, window.innerHeight || 0);
-
-
-//     jQuery('#green1').html('1vH ' + frameHeight + ' vw: ' + frameWidth);
-//     jQuery('#green2').html(imgHeight);
-// });
-
-var uagent = navigator.userAgent.toLowerCase();
-console.log(uagent);
-// jQuery('#blue1').html(uagent);
-
-
-hammertime.on('tap', function(e) { console.log(e); })
-
-function showFull(e) {
-    // Set everything to default
-    thisBody.style.width = '100%'
-    wrapper.style.width = '100%';
-
-    targetImg.style.top = '0';
-    targetImg.style.left = '0';
-}
-
-
-/* 'panImage' will modify left and top positions to appear that the user is scrolling on the 
-/* image.  We use this approach because default scrolling will not work correctly
-/* due to Hammer.js */
-function panImage (e) {
-
-jQuery('#blue1').html('panActive');
-    // These variables need to be local since orientation can change.
-    var imgWidth = parseInt(getComputedStyle(wrapper).width),
-        imgHeight = parseInt(getComputedStyle(wrapper).height),
-        // frameWidth & frameHeight: Use parent iframe's size by default.  Use viewport's size as fallback.
-        frameWidth = /*window.frameElement.offsetWidth ||*/ Math.max(document.documentElement.clientWidth, window.innerWidth || 0), 
-        frameHeight = /*window.frameElement.offsetHeight||*/ Math.max(document.documentElement.clientWidth, window.innerHeight || 0);
+// These variables need to be local since orientation can change.
+var imgWidth = parseInt(getComputedStyle(wrapper).width),
+    imgHeight = parseInt(getComputedStyle(wrapper).height),
+    // frameWidth & frameHeight: Use parent iframe's size by default.  Use viewport's size as fallback.
+    frameWidth = window.frameElement.offsetWidth || Math.max(document.documentElement.clientWidth, window.innerWidth || 0), 
+    frameHeight = window.frameElement.offsetHeight|| Math.max(document.documentElement.clientWidth, window.innerHeight || 0);
 
 
 
-    // Configure Horizontal Pan
-    var minLeft = 0,
-        maxLeft = frameWidth - imgWidth,
-        posLeft = parseInt(getComputedStyle(targetImg).left),
-        newLeft  =  posLeft + (e.deltaX * rate);
-
-    if(imgWidth < frameWidth || newLeft > minLeft) {
-        newLeft = minLeft ;
-    } else if (newLeft < maxLeft) {
-        newLeft = maxLeft;
-    }
-    targetImg.style.left = newLeft + 'px';
+console.log(frameWidth);
 
 
-    // Configure Vertical Pan
-    var minTop = 0,
-        maxTop = frameHeight - imgHeight,
-        posTop = parseInt(getComputedStyle(targetImg).top),
-        newTop  =  posTop + (e.deltaY * rate);
+// jQuery('#green').hide();
+// // Hammer(document.getElementById('green')).on('tap', function(e) {
+// //     // var imgWidth = parseInt(getComputedStyle(wrapper).width);
+// //     var imgHeight = parseInt(getComputedStyle(wrapper).height);
+// // var viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+// // var viewportHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
 
-    if(imgHeight < frameHeight || newTop > minTop) {
-        newTop = minTop ;
-    } else if (newTop < maxTop) {
-        newTop = maxTop;
-    }
-    targetImg.style.top = newTop + 'px';
-
-}
+// //      var   frameWidth = window.frameElement.offsetWidth || Math.max(document.documentElement.clientWidth, window.innerWidth || 0), 
+// //         frameHeight = window.frameElement.offsetHeight|| Math.max(document.documentElement.clientWidth, window.innerHeight || 0);
 
 
-function resize (e, direction) {
-    // These variables need to be local due to orientation changing
-    var imgWidth = parseInt(getComputedStyle(wrapper).width),
-        imgHeight = parseInt(getComputedStyle(wrapper).height),
-        viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0),
-        viewportHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-
-    // Save ratio for keeping position intact
-    var ratioLeft = parseInt(getComputedStyle(targetImg).left) / imgWidth,
-        ratioTop = parseInt(getComputedStyle(targetImg).top) / imgHeight;   
-
-
-    var delta = direction * Math.sqrt( (e.deltaY * e.deltaY) + (e.deltaX * e.deltaX) ); // Calculus formula
-    var newWidth = imgWidth + (delta * rate);  // Slow the change down
-
-    var minZoom = viewportWidth,
-        maxZoom = viewportWidth * 2.5;
-
-    if( newWidth < minZoom) {
-        newWidth = minZoom;
-    } else if (newWidth > maxZoom) {
-        newWidth = maxZoom;
-    }
-
-    wrapper.style.width = newWidth  + 'px';
-    // thisBody.style.width = newWidth + 'px';
-
-
-    /* Now reposition top and left according to initial ratio. */
-    var newHeight = newWidth * (imgHeight/imgWidth);  // This is the new height in theory.
-    var newLeft = ratioLeft * newWidth,
-        newTop = ratioTop * newHeight;
-
-    targetImg.style.left = newLeft + 'px';
-    targetImg.style.top = newTop + 'px';
-
-    jQuery('#blue1').html('direction: ' + direction + '\n VW: ' + viewportWidth + ' VH: ' + viewportHeight);
-    jQuery('#blue2').html('newTop ' + newTop);
+// //     jQuery('#green1').html('1vH ' + frameHeight + ' vw: ' + frameWidth);
+// //     jQuery('#green2').html(imgHeight);
+// // });
 
 
 
-    // //Corner case: Zooming-in and edge is revealed
-    // var maxX = viewportWidth - imgWidth;
-    // var posLeft = parseInt(getComputedStyle(targetImg).left);
 
-    // if (posLeft < maxX) {
-    //     posLeft = maxX;
-    //     targetImg.style.left = posLeft + 'px';
-    // }
+// var hammertime = new Hammer(wrapper);
 
-    // jQuery('#viewportP').html('vW ' + viewportWidth);
-    // jQuery('#widthImg').html('imgw ' + maxX);
-    // jQuery('#lefpos').html('lefpos ' + posLeft);
+// hammertime.get('pinch').set({ enable: true }); //Pinch is disabled by default
 
+// // Items below are enabled by default
+// // hammertime.get('pan').set({ enable: false });  
+// // hammertime.get('tap').set({ enable: false });
+// hammertime.get('press').set({ enable: false });
+// hammertime.get('rotate').set({ enable: false });
+// hammertime.get('swipe').set({ enable: false });
 
 
-    // //Corner case: Zooming-in and edge is revealed
-    // var maxY = viewportHeight - imgHeight;
-    // var posTop = parseInt(getComputedStyle(targetImg).top);
-
-    // if (posTop < maxY) {
-    //     posTop = maxY;
-    //     targetImg.style.top = posTop + 'px';
-    // }
-
-    // jQuery('#viewportP').html('vH ' + viewportHeight);
-    // jQuery('#widthImg').html('imgw ' + maxX);
-    // jQuery('#lefpos').html('posTop ' + posTop);
-};
+// // Event Listeners
+// hammertime.on('pan', panImage);
+// hammertime.on('pinchin', function(e){ resize(e, -1); });
+// hammertime.on('pinchout', function(e){ resize(e, 1); });
+// hammertime.on('doubletap', showFull);
 
 
-// console.log('woo ohoo');
-// var app = window.parent.app;
+// var uagent = navigator.userAgent.toLowerCase();
+// console.log(uagent);
+// // jQuery('#blue1').html(uagent);
 
-// console.log(app);
 
-// if (app.environment.mobile) {
-//     // implement zoom icons and functionality for mobile
-//     app.util.embedFile(app.util.frontend_path('js/plugins', 'hammer.min.js'), function () {
-        
-//         Hammer(container, {
-//             drag_block_vertical: true,
-//             drag_block_horizontal: true
-//         })
-//         .on("swipeleft", rpLib.scope(self.swipeLeft, self))
-//         .on("swiperight", rpLib.scope(self.swipeRight, self));
-//     });
+// hammertime.on('tap', function(e) { console.log(e); })
 
-// } else {
-    
+// function showFull(e) {
+//     // Set everything to default
+//     thisBody.style.width = '100%'
+//     wrapper.style.width = '100%';
+
+//     targetImg.style.top = '0';
+//     targetImg.style.left = '0';
 // }
+
+
+// /* 'panImage' will modify left and top positions to appear that the user is scrolling on the 
+// /* image.  We use this approach because default scrolling will not work correctly
+// /* due to Hammer.js */
+// function panImage (e) {
+
+// jQuery('#blue1').html('panActive');
+//     // These variables need to be local since orientation can change.
+//     var imgWidth = parseInt(getComputedStyle(wrapper).width),
+//         imgHeight = parseInt(getComputedStyle(wrapper).height),
+//         // frameWidth & frameHeight: Use parent iframe's size by default.  Use viewport's size as fallback.
+//         frameWidth = /*window.frameElement.offsetWidth ||*/ Math.max(document.documentElement.clientWidth, window.innerWidth || 0), 
+//         frameHeight = /*window.frameElement.offsetHeight||*/ Math.max(document.documentElement.clientWidth, window.innerHeight || 0);
+
+
+
+//     // Configure Horizontal Pan
+//     var minLeft = 0,
+//         maxLeft = frameWidth - imgWidth,
+//         posLeft = parseInt(getComputedStyle(targetImg).left),
+//         newLeft  =  posLeft + (e.deltaX * rate);
+
+//     if(imgWidth < frameWidth || newLeft > minLeft) {
+//         newLeft = minLeft ;
+//     } else if (newLeft < maxLeft) {
+//         newLeft = maxLeft;
+//     }
+//     targetImg.style.left = newLeft + 'px';
+
+
+//     // Configure Vertical Pan
+//     var minTop = 0,
+//         maxTop = frameHeight - imgHeight,
+//         posTop = parseInt(getComputedStyle(targetImg).top),
+//         newTop  =  posTop + (e.deltaY * rate);
+
+//     if(imgHeight < frameHeight || newTop > minTop) {
+//         newTop = minTop ;
+//     } else if (newTop < maxTop) {
+//         newTop = maxTop;
+//     }
+//     targetImg.style.top = newTop + 'px';
+
+// }
+
+
+// function resize (e, direction) {
+//     // These variables need to be local due to orientation changing
+//     var imgWidth = parseInt(getComputedStyle(wrapper).width),
+//         imgHeight = parseInt(getComputedStyle(wrapper).height),
+//         viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0),
+//         viewportHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+
+//     // Save ratio for keeping position intact
+//     var ratioLeft = parseInt(getComputedStyle(targetImg).left) / imgWidth,
+//         ratioTop = parseInt(getComputedStyle(targetImg).top) / imgHeight;   
+
+
+//     var delta = direction * Math.sqrt( (e.deltaY * e.deltaY) + (e.deltaX * e.deltaX) ); // Calculus formula
+//     var newWidth = imgWidth + (delta * rate);  // Slow the change down
+
+//     var minZoom = viewportWidth,
+//         maxZoom = viewportWidth * 2.5;
+
+//     if( newWidth < minZoom) {
+//         newWidth = minZoom;
+//     } else if (newWidth > maxZoom) {
+//         newWidth = maxZoom;
+//     }
+
+//     wrapper.style.width = newWidth  + 'px';
+//     // thisBody.style.width = newWidth + 'px';
+
+
+//     /* Now reposition top and left according to initial ratio. */
+//     var newHeight = newWidth * (imgHeight/imgWidth);  // This is the new height in theory.
+//     var newLeft = ratioLeft * newWidth,
+//         newTop = ratioTop * newHeight;
+
+//     targetImg.style.left = newLeft + 'px';
+//     targetImg.style.top = newTop + 'px';
+
+//     jQuery('#blue1').html('direction: ' + direction + '\n VW: ' + viewportWidth + ' VH: ' + viewportHeight);
+//     jQuery('#blue2').html('newTop ' + newTop);
+
+
+
+//     // //Corner case: Zooming-in and edge is revealed
+//     // var maxX = viewportWidth - imgWidth;
+//     // var posLeft = parseInt(getComputedStyle(targetImg).left);
+
+//     // if (posLeft < maxX) {
+//     //     posLeft = maxX;
+//     //     targetImg.style.left = posLeft + 'px';
+//     // }
+
+//     // jQuery('#viewportP').html('vW ' + viewportWidth);
+//     // jQuery('#widthImg').html('imgw ' + maxX);
+//     // jQuery('#lefpos').html('lefpos ' + posLeft);
+
+
+
+//     // //Corner case: Zooming-in and edge is revealed
+//     // var maxY = viewportHeight - imgHeight;
+//     // var posTop = parseInt(getComputedStyle(targetImg).top);
+
+//     // if (posTop < maxY) {
+//     //     posTop = maxY;
+//     //     targetImg.style.top = posTop + 'px';
+//     // }
+
+//     // jQuery('#viewportP').html('vH ' + viewportHeight);
+//     // jQuery('#widthImg').html('imgw ' + maxX);
+//     // jQuery('#lefpos').html('posTop ' + posTop);
+// };
+
+
+// // console.log('woo ohoo');
+// // var app = window.parent.app;
+
+// // console.log(app);
+
+// // if (app.environment.mobile) {
+// //     // implement zoom icons and functionality for mobile
+// //     app.util.embedFile(app.util.frontend_path('js/plugins', 'hammer.min.js'), function () {
+        
+// //         Hammer(container, {
+// //             drag_block_vertical: true,
+// //             drag_block_horizontal: true
+// //         })
+// //         .on("swipeleft", rpLib.scope(self.swipeLeft, self))
+// //         .on("swiperight", rpLib.scope(self.swipeRight, self));
+// //     });
+
+// // } else {
+    
+// // }
 
 </script>
 
