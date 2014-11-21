@@ -89,7 +89,8 @@ hammertime.get('swipe').set({ enable: false });
 
 // Event Listeners
 hammertime.on('pan', panImage);
-hammertime.on('pinch', resize);
+hammertime.on('pinchin', resize(event, 'in'));
+hammertime.on('pinchout', resize(event, 'out'));
 hammertime.on('doubletap', showFull);
 
 jQuery('#green').hide();
@@ -161,7 +162,7 @@ function panImage (e) {
 }
 
 
-function resize (e) {
+function resize (e, direction) {
     // These variables need to be local due to orientation changing
     var imgWidth = parseInt(getComputedStyle(wrapper).width),
         imgHeight = parseInt(getComputedStyle(wrapper).height),
@@ -197,7 +198,7 @@ function resize (e) {
     targetImg.style.left = newLeft + 'px';
     targetImg.style.top = newTop + 'px';
 
-    jQuery('#blue1').html('delta is  ' + delta + ' X: ' + e.deltaX + ' Y: ' + e.deltaY);
+    jQuery('#blue1').html('direction: ' + direction + '\n delta is  ' + delta + ' X: ' + e.deltaX + ' Y: ' + e.deltaY);
     jQuery('#blue2').html('newTop ' + newTop);
 
 
