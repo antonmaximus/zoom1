@@ -20,7 +20,7 @@ body, div, img {
 }
 
 body {
-    background-color: cornflowerblue;
+    background-color: white;
     border: 2px solid red;
     }
 
@@ -173,8 +173,8 @@ function resize (e) {
         ratioTop = parseInt(getComputedStyle(targetImg).top) / imgHeight;   
 
 
-    var deltaY = e.deltaY;
-    var newWidth = imgWidth - deltaY;
+    var delta = Math.sqrt( (e.deltaY * e.deltaY) + (e.deltaX * e.deltaX) ); // Calculus formula
+    var newWidth = imgWidth - delta;
 
     var minZoom = viewportWidth;
     var maxZoom = viewportWidth * 2.5;
