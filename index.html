@@ -49,7 +49,7 @@ body {
 </div>
 
 <div id='blue'>
-<p id='viewportP'>hellow 11 </p>
+<p id='viewportP'>hellow ss </p>
 <p id='widthImg'>hellow aa </p>
 <p id='lefpos'>hellow aa </p>
 </div>
@@ -86,20 +86,21 @@ hammertime.get('rotate').set({ enable: false });
 
 hammertime.on('pan', function(e) {
 
-    var maxX = parseInt(getComputedStyle(myElement).width);
+    var imgWidth = parseInt(getComputedStyle(myElement).width);
     var minX = 0;
+    var maxX = viewportWidth - imgWidth;
 
-    console.log('Viewwidth is ' + viewportWidth);
-    console.log('width is ' + maxX);
+    var posLeft = parseInt(getComputedStyle(targetImg).left);
 
-    var imgLeft = parseInt(getComputedStyle(targetImg).left);
-    var totalX  =  imgLeft + e.deltaX;
+    var totalX  =  posLeft + e.deltaX;
     jQuery('#viewportP').html('vW ' + viewportWidth);
     jQuery('#widthImg').html('imgw ' + maxX);
-    jQuery('#lefpos').html('lefpos ' + imgLeft);
+    jQuery('#lefpos').html('lefpos ' + posLeft);
 
     if(totalX > minX) {
         totalX = minX ;
+    } else if (totalX < maxX) {
+        totalX = maxX;
     }
 
     targetImg.style.left = totalX + 'px';
