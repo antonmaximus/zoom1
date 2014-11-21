@@ -103,6 +103,13 @@ jQuery('#green').hide();
 
 function panImage (e) {
 
+    // These variables need to be local due to orientation changing
+    var imgWidth = parseInt(getComputedStyle(wrapper).width),
+        imgHeight = parseInt(getComputedStyle(wrapper).height),
+        viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0),
+        viewportHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+
+
     // // Configure X pan
     // var imgWidth = parseInt(getComputedStyle(wrapper).width),
     //     minX = 0,
@@ -119,22 +126,21 @@ function panImage (e) {
 
 
 
-    // Configure Y pan
-    var imgHeight = parseInt(getComputedStyle(wrapper).height),
-        minY = 0,
-        maxY = viewportHeight - imgHeight,
+    // Configure Vertical Pan
+    var minTop = 0,
+        maxTop = viewportHeight - imgHeight,
         posTop = parseInt(getComputedStyle(targetImg).top),
-        newY  =  posTop + e.deltaY;
+        newTop  =  posTop + e.deltaY;
 
-    if(imgHeight < viewportHeight || newY > minY) {
-        newY = minY ;
-    } else if (newY < maxY) {
-        newY = maxY;
+    if(imgHeight < viewportHeight || newTop > minTop) {
+        newTop = minTop ;
+    } else if (newY < maxTop) {
+        newTop = maxTop;
     }
-    targetImg.style.top = newY + 'px';
+    targetImg.style.top = newTop + 'px';
 
     jQuery('#viewportP').html('vH ' + viewportHeight);
-    jQuery('#widthImg').html('imgw ' + maxY);
+    jQuery('#widthImg').html('imgw ' + maxTop);
     jQuery('#lefpos').html('posTopz ' + posTop);
 
 }
