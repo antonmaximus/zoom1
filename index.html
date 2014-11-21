@@ -47,7 +47,7 @@ body {
 </div>
 
 <div id='blue'>
-<p id='viewportP'>b qq </p>
+<p id='viewportP'>aa qq </p>
 <p id='widthImg'>hellow aa </p>
 <p id='lefpos'>hellow aa </p>
 </div>
@@ -142,6 +142,14 @@ function resize (e) {
     if (posLeft < maxX) {
         posLeft = maxX;
         targetImg.style.left = posLeft + 'px';
+    }
+
+    var maxY = viewportHeight - imgHeight;
+    var posTop = parseInt(getComputedStyle(targetImg).top);
+
+    if (posTop < maxY) {
+        posTop = maxY;
+        targetImg.style.left = posTop + 'px';
     }
 
 
