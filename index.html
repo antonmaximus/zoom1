@@ -49,7 +49,7 @@ body {
 </div>
 
 <div id='blue'>
-<p id='viewportP'>hellow 111 </p>
+<p id='viewportP'>hellow ss </p>
 <p id='widthImg'>hellow aa </p>
 <p id='lefpos'>hellow aa </p>
 </div>
@@ -98,13 +98,6 @@ function panImage (e) {
         maxX = viewportWidth - imgWidth,
         posLeft = parseInt(getComputedStyle(targetImg).left),
         totalX  =  posLeft + e.deltaX;
-
-    var imgHeight = parseInt(getComputedStyle(myElement).height),
-        minY = 0,
-        maxY = viewportHeight - imgHeight,
-        posTop = parseInt(getComputedStyle(targetImg).top),
-        totalY  =  posTop + e.deltaY;
-
     // jQuery('#viewportP').html('vW ' + viewportWidth);
     // jQuery('#widthImg').html('imgw ' + maxX);
     // jQuery('#lefpos').html('lefpos ' + posLeft);
@@ -114,15 +107,20 @@ function panImage (e) {
     } else if (totalX < maxX) {
         totalX = maxX;
     }
+    targetImg.style.left = totalX + 'px';
+
+
+    var imgHeight = parseInt(getComputedStyle(myElement).height),
+        minY = 0,
+        maxY = viewportHeight - imgHeight,
+        posTop = parseInt(getComputedStyle(targetImg).top),
+        totalY  =  posTop + e.deltaY;
 
     if(totalY > minY) {
         totalY = minY ;
     } else if (totalY < maxY) {
         totalY = maxY;
     }
-
-
-    targetImg.style.left = totalX + 'px';
     targetImg.style.top = totalY + 'px';
 }
 
