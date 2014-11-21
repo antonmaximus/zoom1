@@ -54,45 +54,45 @@ body {
 
 
 <script src="./hammer.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
 
 <script type="text/javascript">
 
-var myElement = document.getElementById('wrapper'), 
+var wrapper = document.getElementById('wrapper'), 
     targetImg = document.getElementById('targetImg');
 var thisBody = document.body;
-var minWidth = jQuery(window).width();
 
 var viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 var viewportHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-console.log(myElement);
 
 
-// Hammer.defaults.behavior.touchAction = 'pan-x';
+var hammertime = new Hammer(wrapper);
 
-var hammertime = new Hammer(myElement);
+hammertime.get('pinch').set({ enable: true }); //Pinch is disabled by default
 
-hammertime.get('pinch').set({ enable: true });
-
+// hammertime.get('pan').set({ enable: false });  //Pan is enabled by default
 hammertime.get('tap').set({ enable: false });
-// hammertime.get('pan').set({ enable: false });
 hammertime.get('press').set({ enable: false });
 hammertime.get('rotate').set({ enable: false });
 hammertime.get('swipe').set({ enable: false });
 
-// jQuery('#textbox').html(minWidth);
 
+// Event Listeners
 hammertime.on('pan', panImage);
-
-
 hammertime.on('pinch', resize);
+
+
+var imgWidth = parseInt(getComputedStyle(wrapper).width);
+var imgHeight = parseInt(getComputedStyle(wrapper).height);
+jQuery('#viewportP').html('vH ' + imgHeight + ' vw: ' + imgWidth);
+
 
 
 function panImage (e) {
 
     // // Configure X pan
-    // var imgWidth = parseInt(getComputedStyle(myElement).width),
+    // var imgWidth = parseInt(getComputedStyle(wrapper).width),
     //     minX = 0,
     //     maxX = viewportWidth - imgWidth,
     //     posLeft = parseInt(getComputedStyle(targetImg).left),
@@ -108,7 +108,7 @@ function panImage (e) {
 
 
     // Configure Y pan
-    var imgHeight = parseInt(getComputedStyle(myElement).height),
+    var imgHeight = parseInt(getComputedStyle(wrapper).height),
         minY = 0,
         maxY = viewportHeight - imgHeight,
         posTop = parseInt(getComputedStyle(targetImg).top),
@@ -129,8 +129,8 @@ function panImage (e) {
 
 
 function resize (e) {
-    var imgWidth = parseInt(getComputedStyle(myElement).width);
-    var imgHeight = parseInt(getComputedStyle(myElement).height);
+    var imgWidth = parseInt(getComputedStyle(wrapper).width);
+    var imgHeight = parseInt(getComputedStyle(wrapper).height);
     var deltaY = e.deltaY;
     var newWidth = imgWidth - deltaY;
 
@@ -143,7 +143,7 @@ function resize (e) {
         newWidth = maxZoom;
     }
 
-    myElement.style.width = newWidth + 'px';
+    wrapper.style.width = newWidth + 'px';
     thisBody.style.width = newWidth + 'px';
 
 
