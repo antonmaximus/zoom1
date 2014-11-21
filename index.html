@@ -49,7 +49,7 @@ body {
 </div>
 
 <div id='blue'>
-<p id='viewportP'>hellow qqq </p>
+<p id='viewportP'>hellow aaa </p>
 <p id='widthImg'>hellow aa </p>
 <p id='lefpos'>hellow aa </p>
 </div>
@@ -126,21 +126,25 @@ function resize (e) {
     var minZoom = viewportWidth;
     var maxZoom = viewportWidth * 3;
 
+
+    //Corner case: Zooming-in and edge is revealed
+    var maxX = viewportWidth - imgWidth;
+    var posLeft = parseInt(getComputedStyle(targetImg).left);
+
+    if (posLeft < maxX) {
+        posLeft = maxX;
+        targetImg.style.left = posLeft + 'px';
+    }
+
+
+    jQuery('#viewportP').html('vW ' + viewportWidth);
+    jQuery('#widthImg').html('imgw ' + maxX);
+    jQuery('#lefpos').html('lefpos ' + posLeft);
+
     if( newWidth < minZoom) {
         newWidth = minZoom;
     } else if (newWidth > maxZoom) {
         newWidth = maxZoom;
-
-        //Corner case: Zooming-in and edge is revealed
-        var maxX = viewportWidth - imgWidth;
-        var posLeft = parseInt(getComputedStyle(targetImg).left);
-
-        if (posLeft < maxX) {
-            posLeft = maxX;
-            targetImg.style.left = posLeft + 'px';
-        }
-
-
     }
 
     jQuery('#textbox').html(newWidth);
