@@ -27,11 +27,12 @@ html, body {
 }
 
 #buttonHolder {
-    text-align: center;
+    text-align: left;
+    position: fixed;
 }
 button {
-    width: 33%;
-    height: 33%;
+    width: 100px;
+    height: 100px;
     background-color: rgba(255, 0, 0, 0.33);
 }
 </style>
@@ -41,8 +42,8 @@ button {
 
 
 <div id='buttonHolder'>
-    <button id='minus' onclick='zoom(-1)'>Minus</button>
-    <button id='plus' onclick='zoom(1)'>Plus</button>
+    <button id='minus' onclick='zoom(-1)'>Zoom-Out</button>
+    <button id='plus' onclick='zoom(1)'>Zoom-In</button>
 </div>
 
 <div id='wrapper' >
