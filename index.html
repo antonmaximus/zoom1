@@ -17,7 +17,7 @@ body, div, img {
 }
 
 body {
-    background-color: yellow;
+    background-color: pink;
     border: 0px solid red;
     -webkit-overflow-scrolling: touch;
     }
@@ -40,8 +40,8 @@ body {
     text-align: center;
 }
 button {
-    width: 40vw;
-    height: 30vh;
+    width: 100px;
+    height: 100px;
     background-color: rgba(255, 0, 0, 0.33);
 }
 </style>
@@ -95,6 +95,8 @@ var wrapper = document.getElementById('wrapper'),
 var viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 var viewportHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
     // var viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0),
+var wrapperWidth = parseInt(getComputedStyle(wrapper).width);
+
 
 
 // These variables need to be local since orientation can change.
@@ -104,11 +106,10 @@ var imgWidth = parseInt(getComputedStyle(wrapper).width),
     frameWidth = window.frameElement.offsetWidth || Math.max(document.documentElement.clientWidth, window.innerWidth || 0), 
     frameHeight = window.frameElement.offsetHeight|| Math.max(document.documentElement.clientWidth, window.innerHeight || 0);
 */
-console.log('wrapperW: ' + parseInt(getComputedStyle(wrapper).width) + ", wrapH: " + parseInt(getComputedStyle(wrapper).height) );
+console.log('viewW: ' + viewportWidth + ", viewH: " + viewportHeight );
 
 function zoom(direction) {
-    var wrapperWidth = parseInt(getComputedStyle(wrapper).width);
-    var        minZoom = viewportWidth,
+    var minZoom = viewportWidth,
         maxZoom = viewportWidth * 3,
         scale = 0.25 * direction,
         newWidth = wrapperWidth + (viewportWidth * scale);
