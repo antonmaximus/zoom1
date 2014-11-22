@@ -66,7 +66,7 @@ button {
 </div>
 
 <div id='blue'>
-    <p id='blue1'>111 qq </p>
+    <p id='blue1'>aa qq </p>
     <p id='blue2'>hellow aa </p>
     <p id='blue3'>hellow aa </p>
 </div>
@@ -94,6 +94,7 @@ var wrapper = document.getElementById('wrapper'),
 
 var viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 var viewportHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+    // var viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0),
 
 
 // These variables need to be local since orientation can change.
@@ -107,8 +108,7 @@ console.log(parseInt(getComputedStyle(wrapper).width));
 
 function zoom(direction) {
     var wrapperWidth = parseInt(getComputedStyle(wrapper).width);
-    var viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0),
-        minZoom = viewportWidth,
+    var        minZoom = viewportWidth,
         maxZoom = viewportWidth * 3,
         scale = 0.25 * direction,
         newWidth = wrapperWidth + (viewportWidth * scale);
