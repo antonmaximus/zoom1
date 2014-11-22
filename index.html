@@ -9,24 +9,21 @@
 p { font-size: 60px;}
 
 
-#blue {
-    border: 1px solid blue;
-}
-
 
 body, div, img {
     padding: 0;
     margin: 0;
+    border: 0;
 }
 
 body {
     background-color: pink;
-    border: 2px solid red;
+    border: 0px solid red;
     -webkit-overflow-scrolling: touch;
     }
 
 #wrapper {
-    border: 2px solid yellow;
+    border: 0px solid yellow;
     position: relative;
 /*    height: 100vh;
     width: 100vw;*/
@@ -39,6 +36,14 @@ body {
     width: 100%;
 }
 
+#buttonHolder {
+    text-align: center;
+}
+button {
+    width: 40%;
+    background-color: rgba(255, 0, 0, 0.33);
+    height: 300px;
+}
 </style>
 </head>
 
@@ -49,10 +54,14 @@ body {
     <p id='green2'>hellow aa </p>
 </div> -->
 
+<div id='buttonHolder'>
+    <button id='minus' onclick='zoom(-1)'>Minus</button>
+    <button id='plus' onclick='zoom(1)'>Plus</button>
+</div>
 
 <div id='wrapper' >
-    <img id='targetImg' src="http://a4.mzstatic.com/us/r30/Purple3/v4/8b/27/0b/8b270b51-e479-dfe9-f337-37b02a831edc/icon256.png" alt="" />
-    <!-- <img id='targetImg' src="Travel_MoneyTips.png" alt="" /> -->
+    <!-- <img id='targetImg' src="http://a4.mzstatic.com/us/r30/Purple3/v4/8b/27/0b/8b270b51-e479-dfe9-f337-37b02a831edc/icon256.png" alt="" /> -->
+    <img id='targetImg' src="Travel_MoneyTips.png" alt="" />
     <!-- <img id='targetImg' src="http://2.bp.blogspot.com/-VQJMK8PRnI0/UjYaglEkV5I/AAAAAAAAACg/N2MkW6iorr0/s1600/30192_1600x1200-4-cute-cats.jpg" /> -->
 </div>
 
@@ -62,12 +71,21 @@ body {
     <p id='blue3'>hellow aa </p>
 </div>
 
+<div id='buttonHolder'>
+    <button id='minus'></button>
+    <button id='plus'></button>
+</div>
+
 
 <script src="./hammer.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
 
 <script type="text/javascript">
+
+
+
+
 
 var wrapper = document.getElementById('wrapper'), 
     targetImg = document.getElementById('targetImg'),
@@ -80,14 +98,36 @@ var viewportHeight = Math.max(document.documentElement.clientHeight, window.inne
 
 // These variables need to be local since orientation can change.
 var imgWidth = parseInt(getComputedStyle(wrapper).width),
-    imgHeight = parseInt(getComputedStyle(wrapper).height),
-    // frameWidth & frameHeight: Use parent iframe's size by default.  Use viewport's size as fallback.
+    imgHeight = parseInt(getComputedStyle(wrapper).height);
+/*    // frameWidth & frameHeight: Use parent iframe's size by default.  Use viewport's size as fallback.
     frameWidth = window.frameElement.offsetWidth || Math.max(document.documentElement.clientWidth, window.innerWidth || 0), 
     frameHeight = window.frameElement.offsetHeight|| Math.max(document.documentElement.clientWidth, window.innerHeight || 0);
+*/
+console.log(parseInt(getComputedStyle(wrapper).width));
+
+function zoom(direction) {
+    var wrapperWidth = parseInt(getComputedStyle(wrapper).width);
+    var viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0),
+        minZoom = viewportWidth,
+        maxZoom = viewportWidth * 3,
+        scale = 0.25 * direction,
+        newWidth = wrapperWidth + (viewportWidth * scale);
+
+    if(newWidth > maxZoom){
+        newWidth = maxZoom;
+    } else if (newWidth < minZoom) {
+        newWidth = minZoom;
+    }
+
+
+    wrapper.style.width = newWidth + 'px'; 
+
+    console.log(viewportWidth);
+    console.log(wrapperWidth);
+}
 
 
 
-console.log(frameWidth);
 
 
 // jQuery('#green').hide();
